@@ -1,111 +1,147 @@
 @font-face {
-    font-family: 'Futuris';
-    src: url('fonts/Futuris-Regular.eot');
-    src: url('fonts/Futuris-Regular.eot?#iefix') format('embedded-opentype'), url('fonts/Futuris-Regular.woff') format('woff'), url('fonts/Futuris-Regular.ttf') format('truetype'), url('fonts/Futuris-Regular.svg') format('svg');
+    font-family: 'AFuturaRound';
+    src: url('fonts/afuturaround-regular-webfont.eot');
+    src: url('fonts/afuturaround-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/afuturaround-regular-webfont.woff2') format('woff2'),
+         url('fonts/afuturaround-regular-webfont.woff') format('woff'),
+         url('fonts/afuturaround-regular-webfont.ttf') format('truetype'),
+         url('fonts/afuturaround-regular-webfont.svg#a_futuraroundregular') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
-    font-family: 'Futuris';
-    src: url('fonts/Futuris-Bold.eot');
-    src: url('fonts/Futuris-Bold.eot?#iefix') format('embedded-opentype'), url('fonts/Futuris-Bold.woff') format('woff'), url('fonts/Futuris-Bold.ttf') format('truetype'), url('fonts/Futuris-Bold.svg') format('svg');
+    font-family: 'AFuturaRound';
+    src: url('fonts/afuturaround-bold-webfont.eot');
+    src: url('fonts/afuturaround-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/afuturaround-bold-webfont.woff2') format('woff2'),
+         url('fonts/afuturaround-bold-webfont.woff') format('woff'),
+         url('fonts/afuturaround-bold-webfont.ttf') format('truetype'),
+         url('fonts/afuturaround-bold-webfont.svg#a_futuraroundbold') format('svg');
     font-weight: bold;
     font-style: normal;
 }
 @font-face {
-    font-family: 'MyriadPro';
-    src: url('fonts/MyriadPro-Regular.eot');
-    src: url('fonts/MyriadPro-Regular.eot?#iefix') format('embedded-opentype'), url('fonts/MyriadPro-Regular.woff') format('woff'), url('fonts/MyriadPro-Regular.svg') format('svg');
+    font-family: 'AFuturaRoundDemi';
+    src: url('fonts/afuturarounddemi-webfont.eot');
+    src: url('fonts/afuturarounddemi-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/afuturarounddemi-webfont.woff2') format('woff2'),
+         url('fonts/afuturarounddemi-webfont.woff') format('woff'),
+         url('fonts/afuturarounddemi-webfont.ttf') format('truetype'),
+         url('fonts/afuturarounddemi-webfont.svg#a_futurarounddemiregular') format('svg');
     font-weight: normal;
     font-style: normal;
 }
-@font-face {
-    font-family: 'MyriadPro';
-    src: url('fonts/MyriadPro-Bold.eot');
-    src: url('fonts/MyriadPro-Bold.eot?#iefix') format('embedded-opentype'), url('fonts/MyriadPro-Bold.woff') format('woff'), url('fonts/MyriadPro-Bold.svg') format('svg');
-    font-weight: bold;
-    font-style: normal;
-}
-html { height: 100%; }
-body { height: 100%; margin: 0; color: #000000; font-weight: normal; font-style: normal; font-family: 'Futuris', Sans-Serif; line-height: 1.5em; font-size: 100%; background: #ffffff; min-width: 980px; }
 
-.wrapper { width: 100%; min-height: 100%; min-width: 940px; }
-.wrapper .empty { height: 72px; }
+html { height: 100%; }
+body { height: 100%; margin: 0; color: #000000; font-weight: normal; font-style: normal; font-family: 'AFuturaRound', Arial; line-height: 1.5em; font-size: 100%; background: #ffffff; min-width: 320px; }
+
+.container { min-height: 100%; }
+.wrapper { width: 100%; min-height: 100%; }
+.wrapper .empty { height: 151px; }
 .clear { clear: both; }
 
-.inner { width: 940px; margin: 0 auto; position: relative; }
+.inner { width: 89.34%; padding: 0 5.33%; max-width: 1072px; margin: 0 auto; position: relative; }
+.track-line { height: 26px; background: url('../images/tracks.png') center; }
+.delta-line { height: 9px; background: url('../images/delta.png') center; position: absolute; width: 100%; }
+.delta-line.r { background-image: url('../images/delta-r.png'); top: 0; }
 
-header { position: relative; width: 100%; height: auto; background: #ffffff; overflow: hidden; }
-header .top { height: 93px; }
-header .top a.logo { width: 140px; line-height: 93px; display: inline-block; }
-header .top a.logo img { vertical-align: middle; }
-header .top .title { display: inline-block; vertical-align: middle; font: 22px 'Futuris'; text-transform: uppercase; color: #090909; padding-left: 25px; position: relative; }
-header .top .title .bullet { width: 6px; height: 6px; border-radius: 3px; background: #949494; position: absolute; left: 0; top: 50%; margin-top: -3px; }
-header .top .phones { display: inline-block; vertical-align: middle; position: absolute; right: 0; font: 22px/24px 'Futuris'; top: 50%; margin-top: -12px; color: #0b0b0b; }
-header .banners { height: 276px; }
-header .banners .banner { width: 100%; height: 100%; max-width: 100%; background: no-repeat top center; -webkit-background-size: auto 100%; -moz-background-size: auto 100%; background-size: auto 100%; }
+header { position: relative; width: 100%; height: auto; max-height: 320px; background: #f1e7d7 url('../images/tex.png') center; overflow: hidden; padding-bottom: 9px; }
+header .delta-line { bottom: 0; }
+header .top { display: table; }
+header .top .logo { display: table-cell; width: 62.5%; vertical-align: middle; padding: 3% 0; }
+header .top .logo img { width:100%; vertical-align: middle; }
+header .top .helps { display: table-cell; width: 37.5%; vertical-align: middle; padding-left: 12.78%; background: url('../images/helps.png') no-repeat 18% center; line-height: 1.5em; color: #53443e; font-size: 1.4em; font-family: 'AFuturaRoundDemi'; }
+header .bot { display: table; width: 100%; padding: 3% 0; }
+header .bot .bot-l, header .bot .bot-r { display: table-cell; vertical-align: top; position: relative; vertical-align: middle; }
+header .bot .bot-l { width: 56.9%; }
+header .bot .bot-l .tcl { width: 44%; }
+header .bot .bot-l .s-btn { margin-right: 3%; }
+header .bot .bot-r { width: 43.1%; text-align: right; vertical-align: middle; }
+header .bot .bot-r a { display: inline-block; vertical-align: middle; }
+header .bot .bot-r a img { max-width: 100%; max-height: 100%; }
 
-header .bot { height: 65px; }
-header .bot .menu { width: 800px; height: 35px; padding: 15px 0; }
-header .bot .menu ul { margin: 0; padding: 0; list-style: none; height: 35px; }
-header .bot .menu ul li { display: inline-block; position: relative; padding: 0 8px 0 17px; height: 35px; vertical-align: top; }
-header .bot .menu ul li:first-child { padding-left: 0; }
-header .bot .menu ul li:first-child span.bullet { display: none; }
-header .bot .menu ul li a { font: 16px/35px 'Futuris'; color: #000000; text-decoration: none; display: block; padding: 0 15px; }
-header .bot .menu ul li.active a { background: #0c2d4c; color: #ffffff; }
-header .bot .menu ul li.home { background: url(../images/home.png) no-repeat left center; }
-header .bot .menu ul li.home a { font-size: 0; }
-header .bot .menu ul li.home a:hover, header .bot .menu ul li.active.home a { background: none; }
-header .bot .menu ul li a:hover { background: #0c2d4c; color: #ffffff; }
-header .bot .menu ul li span.bullet { width: 4px; height: 4px; background: #000000; display: block; position: absolute; top: 50%; margin-top: -2px; border-radius: 2px; left: 0; }
-header .bot .menu ul li ul { display: none; }
 
-header .bot .social { position: absolute; right: 0; top: 19px; }
-header .bot .social .block { display: inline-block; width: 29px; height: 28px; margin-left: 9px; }
-header .bot .social a { display: block; width: 29px; height: 28px; background: url('/images/social.png') no-repeat center right; }
-header .bot .social a:hover { background-position: center left; }
+.tcl { display: table-cell; text-align: left; }
+.tcr { display: table-cell; text-align: right; }
+.fl { float: left; }
 
-header .line { height: 1px; background: #1e3e5d; background: -moz-linear-gradient(left, #1e3e5d 0%, #ded0c8 100%); background: -webkit-gradient(linear, left top, right top, color-stop(0%,#1e3e5d), color-stop(100%,#ded0c8)); background: -webkit-linear-gradient(left, #1e3e5d 0%,#ded0c8 100%); background: -o-linear-gradient(left, #1e3e5d 0%,#ded0c8 100%); background: -ms-linear-gradient(left, #1e3e5d 0%,#ded0c8 100%); background: linear-gradient(to right, #1e3e5d 0%,#ded0c8 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e3e5d', endColorstr='#ded0c8',GradientType=1 ); }
+footer { width: 100%; height: 126px; margin-top: -151px; padding-top: 25px; background: #f1e7d7 url('../images/tex.png') center; position: relative; overflow: hidden; }
+footer .bot { display: table; }
+footer .logo, footer .dev { display: table-cell; vertical-align: middle; }
+footer .logo { width: 53.17%; height: 100px; max-width: 670px;  }
+footer .logo img { width: 100%;  vertical-align: middle; max-width: 560px; }
+footer .dev { width: 35.86%; padding-left: 20%; text-align: right; }
+footer .dev img { max-width: 161px; width: 100%; vertical-align: middle; }
 
-footer { width: 100%; min-width: 940px; height: 71px; margin-top: -72px; border-top: 1px solid #dedddd; background: #e9e9e9; position: relative; overflow: hidden; }
-footer a.logo { width: 115px; line-height: 71px; display: inline-block; }
-footer a.logo img { vertical-align: middle; }
-footer .title { display: inline-block; vertical-align: middle; font: 18.46px 'Futuris'; text-transform: uppercase; color: #696969; padding-left: 20px; position: relative; }
-footer .title .bullet { width: 6px; height: 6px; border-radius: 3px; background: #949494; position: absolute; left: 0; top: 50%; margin-top: -3px; }
-footer a.dev { display: inline-block; vertical-align: middle; position: absolute; right: 0; height: 40px; top: 50%; margin-top: -20px; color: #0b0b0b; }
+.content{ width:100%; position: relative; overflow: hidden; padding-bottom: 20px; font-family: 'AFuturaRound'; }
 
-.content { width: 100%; position: relative; overflow: hidden; padding-bottom: 20px; font-family: 'Futuris'; }
-.content h1 { font: 35px 'Futuris'; color: #000000; }
-img { border: none; }
+.s-btn { display: inline-block; text-decoration: none; text-transform: uppercase; font-family: 'AFuturaRoundDemi'; color: #ffffff; font-size: 1.3em; padding: 0 3%; line-height: 2.6168em; border: 1px solid #cd5927; border-radius: 1.3em; background: #f16022; background: -moz-linear-gradient(top, #f59166 0%, #f16123 100%); background: -webkit-linear-gradient(top, #f59166 0%, #f16123 100%); background: -o-linear-gradient(top, #f59166 0%, #f16123 100%); background: -ms-linear-gradient(top, #f59166 0%, #f16123 100%); background: linear-gradient(top, #f59166 0%, #f16123 100%); box-shadow: 0 2px 0 rgba(255, 255, 255, .44) inset, 0 1px 1px rgba(0, 0, 0, .19);  word-wrap: normal; margin-right: -4px; text-shadow: 0 -1px 0 rgba(0, 0, 0, .2); outline: none; }
+.sc-btn { display: inline-block; background: #d4cdae; background: -moz-linear-gradient(top, #d4cdae 0%, #ded9c2 100%); background: -webkit-linear-gradient(top, #d4cdae 0%, #ded9c2 100%); background: -o-linear-gradient(top, #d4cdae 0%, #ded9c2 100%); background: -ms-linear-gradient(top, #d4cdae 0%, #ded9c2 100%); background: linear-gradient(top, #d4cdae 0%, #ded9c2 100%); box-shadow: 0 1px 1px rgba(255, 255, 255, 1) , 0 1px 3px rgba(0, 0, 0, .25) inset; height: 2.4375em; line-height: 2.4375em; border-radius: 1.4em; font-size: 1em; margin-top: 1px; margin-right: 1%;}
+.sc-btn:hover { background: #76cdd7; }
+.sc-sh-btn { display: inline-block; border: 1px solid #cecdcd; border-radius: 1.4em; height: 2.3em; line-height: 2.4em; text-decoration: none; background: #f0ebd8; background: -moz-linear-gradient(top, #f0ebd8 0%, #dad6c2 100%); background: -webkit-linear-gradient(top, #f0ebd8 0%, #dad6c2 100%); background: -o-linear-gradient(top, #f0ebd8 0%, #dad6c2 100%); background: -ms-linear-gradient(top, #f0ebd8 0%, #dad6c2 100%); background: linear-gradient(top, #f0ebd8 0%, #dad6c2 100%); font-family: 'Myriad Pro'; color: #817877; text-transform: uppercase; padding: 0 4%; font-size: 1em; box-shadow: 0 2px 0 rgba(255, 255, 255, .44) inset, 0 1px 1px rgba(0, 0, 0, .19); }
 
-.content .advs { position: relative; margin: 15px 0; }
-.content .advs .block { display: inline-block; position: relative; width: 320px; vertical-align: top; margin-right: 40px; padding-left: 100px; padding: 15px 0px 15px 100px; }
-.content .advs .block:before { position: absolute; left: 0; top: 20px; width: 69px; height: 69px; line-height: 69px; font-family: 'MyriadPro'; font-size: 45px; font-weight: bold; color: #203e5b; text-align: center; border: 2px solid #203e5b; border-radius: 40px; }
-.content .advs .block:nth-child(1):before { content: "1"; }
-.content .advs .block:nth-child(2):before { content: "2"; }
-.content .advs .block:nth-child(3):before { content: "3"; }
-.content .advs .block:nth-child(4):before { content: "4"; }
-.content .advs .block .block-title { font: 24px 'Futuris'; margin-bottom: 10px; color: #000000; }
-.content .advs .block .block-content { font: 14px 'MyriadPro'; color: #3c3c3c; }
+.content p { font-family: 'Verdana'; font-size: 0.9375em; line-height: 1.2667em; margin: 2px 0 ; clear: both; }
+.content h1, h2, h3 { font-family: 'AFuturaRoundDemi'; text-align: center; font-weight: normal; }
+.content h1 { font-size: 1.9375em; color: #1f1f1f; margin-bottom: 10px; }
+.content h2 { font-size: 1.5625em; color: #000000; margin-bottom: 8px; }
+.content h3 { font-size: 1.0625em; color: #000000; margin-bottom: 6px; }
+.content a { color: #f47745; }
+.content img { border: none; border-radius: 8px; margin-right: 1%; margin-top: 4px; margin-bottom: 6px; }
+.content table { width: 100%; margin-bottom: 15px; margin-top: 7px; font-family: Verdana; font-size: 0.9375em; border: 1px solid #f9d9bf; text-align: center; border-radius: 8px; border-spacing: 0; overflow: hidden; box-shadow:0 1px 1px rgba(0, 0, 0, .19); }
+.content table thead tr { position: relative; font-size: 0.933em; font-family: 'AFuturaRoundDemi'; color:#3d3c3c; background: #f7a07d; background: -moz-linear-gradient(top, #f7a07d 0%, #f69974 100%); background: -webkit-linear-gradient(top, #f7a07d 0%, #f69974 100%); background: -o-linear-gradient(top, #f7a07d 0%, #f69974 100%); background: -ms-linear-gradient(top, #f7a07d 0%, #f69974 100%); background: linear-gradient(top, #f7a07d 0%, #f69974 100%); }
+.content table thead tr th { padding: 9px 0; font-weight: normal; text-transform: uppercase; box-shadow: 0 2px 0 rgba(255, 255, 255, .44) inset;  } 
+.content table thead tr th:first-child { border-radius: 8px 0 0 0; } 
+.content table thead tr th:last-child { border-radius: 0 8px 0 0; } 
+.content table tbody tr { background: #ffffff;}
+.content table tbody tr:nth-child(even) { background: #eee5d8; background: -moz-linear-gradient(top, #eee5d8 0%, #ece3d4 100%); background: -webkit-linear-gradient(top, #eee5d8 0%, #ece3d4 100%); background: -o-linear-gradient(top, #eee5d8 0%, #ece3d4 100%); background: -ms-linear-gradient(top, #eee5d8 0%, #ece3d4 100%); background: linear-gradient(top, #eee5d8 0%, #ece3d4 100%); }
+.content table tbody tr td { padding: 7px 0; }
+.content table tbody tr:last-child td:first-child { border-radius: 0 0 0 8px; }
+.content table tbody tr:last-child td:last-child { border-radius: 0 0 8px 0; }
+.content ul { margin: 0; padding: 0; list-style-type: none; margin-bottom: 8px; }
+.content ol { margin: 0 0 0 20px; margin-bottom: 25px;}
+.content ul li { padding: 0; background: url('../images/track.png') no-repeat left 4px; }
+.content ul li p { margin: 0; text-indent: 20px;  }
+.content ol li { margin: 0; padding: 0; }
 
-.content .test-access { background: #f8f8f8; height: 117px; position: relative; }
-.content .test-access .cbg { height: 115px; background: #fdf0e7; position: absolute; left: 0; right: 50%; border-top: 1px solid #fcebdf; border-bottom: 1px solid #fcebdf; }
-.content .test-access .inner .info { width: 755px; height: 115px; display: inline-block; position: relative; background: #fdf0e7; border-top: 1px solid #fcebdf; border-bottom: 1px solid #fcebdf; vertical-align: top; }
-.content .test-access .inner .info h2 { font: 30px 'Futuris'; color: #505050; margin-bottom: 0px; }
-.content .test-access .inner .info p { font: 20px 'Futuris'; color: #505050; margin-top: 15px; }
-.content .test-access .inner .info p span { color: #e12e0b; }
-.content .test-access .inner .info .info-lnb { position: absolute; top: 62px; right: -27px; width: 63px; height: 35px; border-bottom: 1px solid #fcebdf; background: #fdf0e7; -moz-transform: rotate(-68deg); -ms-transform: rotate(-68deg); -webkit-transform: rotate(-68deg); -o-transform: rotate(-68deg); transform: rotate(-68deg); }
-.content .test-access .inner .info .info-lnt { position: absolute; top: 17px; right: -27px; width: 63px; height: 35px; border-bottom: 1px solid #fcebdf; background: #fdf0e7; -moz-transform: rotate(-112deg); -ms-transform: rotate(-112deg); -webkit-transform: rotate(-112deg); -o-transform: rotate(-112deg); transform: rotate(-112deg); }
-.content .test-access .inner .btn { display: inline-block; width: 88px; text-align: center; margin-top: 15px; margin-left: 65px; text-decoration: none; font-family: 'Futuris'; color: #ffffff; font-size: 20px; line-height: 88px; border: 1px solid #194872; border-radius: 45px; background: #0b2952; background: -moz-linear-gradient(top, #114081 0%, #0b2952 100%); background: -webkit-linear-gradient(top, #114081 0%, #0b2952 100%); background: -o-linear-gradient(top, #114081 0%, #0b2952 100%); background: -ms-linear-gradient(top, #114081 0%, #0b2952 100%); background: linear-gradient(top, #114081 0%, #0b2952 100%); box-shadow: 0 1px 2px rgba(255, 255, 255, 1) inset, 0 1px 1px rgba(0, 0, 0, .19);  word-wrap: normal; margin-right: -4px; text-shadow: 0 -1px 0 rgba(0, 0, 0, .2); outline: none;}
 
-.content .services { position: relative; }
-.content .services .block { display: inline-block; position: relative; width: 230px; height: 56px; vertical-align: top; padding-left: 75px; font: 20px/25px 'Futuris'; margin-bottom: 16px; }
-.content .services .block:before { content: ""; position: absolute; width: 56px; height: 56px; left: 0; top: 0; background: #0c2d4c; background: -moz-linear-gradient(top, #194976 0%, #0c2d4c 100%); background: -webkit-linear-gradient(top, #194976 0%, #0c2d4c 100%); background: -o-linear-gradient(top, #194976 0%, #0c2d4c 100%); background: -ms-linear-gradient(top, #194976 0%, #0c2d4c 100%); background: linear-gradient(top, #194976 0%, #0c2d4c 100%); }
-.content .services .block:after { content: ""; position: absolute; width: 56px; height: 56px; background: url('/images/services.png') no-repeat left center; left: 0; top: 0; }
-.content .services .block.design:after { background-position: left center; }
-.content .services .block.panel:after { background-position: -112px center; }
-.content .services .block.hosting:after { background-position: -224px center; }
-.content .services .block.makeup:after { background-position: -56px center; }
-.content .services .block.management:after { background-position: -168px center; }
-.content .services .block.support:after { background-position: -280px center; }
-.content .services .block div, .content .services .block p { height: 56px; vertical-align: middle; display: table-cell; margin: 0; }
+@media screen and (max-width: 1024px)
+{
+	header .top .helps { font-size: 1.1em; padding-left: 13.78%; }
+	.s-btn { font-size: 0.875em; }
+	header .bot .bot-l { width: 50%; }
+	header .bot .bot-r  { font-size: 0.875em; }
+}
+
+@media screen and (max-width: 980px)
+{
+	header .top .helps { font-size: 1em; padding-left: 14.5%; }
+	header .bot .bot-r  { font-size: 0.825em; }
+}
+
+@media screen and (max-width: 768px)
+{
+	header .top .logo { width: 82.895%; }
+	header .top .helps { width: 12.171%; padding-left: 4.934%; background-position: right; background-size: 90%; }
+	header .top .helps div { display: none; }
+	
+	header .bot .bot-l, header .bot .bot-r { width: 100%; display: block; }
+	header .bot .bot-r { padding-top: 3%; text-align: center;}
+	
+	header .bot .bot-l .s-btn { margin: 0; }
+	.par { position: absolute; right: 0;}
+	.content p img { width: 49%; }
+	.content { font-size: 0.9em; }
+	.content ul li { background-position: left 3px; }
+}
+
+@media screen and (max-width: 480px)
+{
+	.s-btn { font-size: 0.6675em; }
+	header .top .logo { width: 82.2368%; }
+	header .bot .bot-r  { font-size: 0.75em; }
+	footer .dev { width: 22.86%; padding-left: 5%; }
+	.content p img { width: 100%; margin-right: 0; }
+	.content { font-size: 0.8em; }
+	.content table { font-size: 0.8em; }
+	.content ul li { background-position: left 2px; }
+}
