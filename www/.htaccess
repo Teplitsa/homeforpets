@@ -1,0 +1,14 @@
+php_flag display_errors on
+php_flag display_startup_errors on
+php_value error_reporting 2047
+
+AddType text/x-component .htc
+
+AddDefaultCharset UTF-8
+Options +FollowSymLinks
+IndexIgnore */*
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . index.php

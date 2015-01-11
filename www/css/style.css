@@ -1,0 +1,111 @@
+@font-face {
+    font-family: 'Futuris';
+    src: url('fonts/Futuris-Regular.eot');
+    src: url('fonts/Futuris-Regular.eot?#iefix') format('embedded-opentype'), url('fonts/Futuris-Regular.woff') format('woff'), url('fonts/Futuris-Regular.ttf') format('truetype'), url('fonts/Futuris-Regular.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Futuris';
+    src: url('fonts/Futuris-Bold.eot');
+    src: url('fonts/Futuris-Bold.eot?#iefix') format('embedded-opentype'), url('fonts/Futuris-Bold.woff') format('woff'), url('fonts/Futuris-Bold.ttf') format('truetype'), url('fonts/Futuris-Bold.svg') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'MyriadPro';
+    src: url('fonts/MyriadPro-Regular.eot');
+    src: url('fonts/MyriadPro-Regular.eot?#iefix') format('embedded-opentype'), url('fonts/MyriadPro-Regular.woff') format('woff'), url('fonts/MyriadPro-Regular.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'MyriadPro';
+    src: url('fonts/MyriadPro-Bold.eot');
+    src: url('fonts/MyriadPro-Bold.eot?#iefix') format('embedded-opentype'), url('fonts/MyriadPro-Bold.woff') format('woff'), url('fonts/MyriadPro-Bold.svg') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+html { height: 100%; }
+body { height: 100%; margin: 0; color: #000000; font-weight: normal; font-style: normal; font-family: 'Futuris', Sans-Serif; line-height: 1.5em; font-size: 100%; background: #ffffff; min-width: 980px; }
+
+.wrapper { width: 100%; min-height: 100%; min-width: 940px; }
+.wrapper .empty { height: 72px; }
+.clear { clear: both; }
+
+.inner { width: 940px; margin: 0 auto; position: relative; }
+
+header { position: relative; width: 100%; height: auto; background: #ffffff; overflow: hidden; }
+header .top { height: 93px; }
+header .top a.logo { width: 140px; line-height: 93px; display: inline-block; }
+header .top a.logo img { vertical-align: middle; }
+header .top .title { display: inline-block; vertical-align: middle; font: 22px 'Futuris'; text-transform: uppercase; color: #090909; padding-left: 25px; position: relative; }
+header .top .title .bullet { width: 6px; height: 6px; border-radius: 3px; background: #949494; position: absolute; left: 0; top: 50%; margin-top: -3px; }
+header .top .phones { display: inline-block; vertical-align: middle; position: absolute; right: 0; font: 22px/24px 'Futuris'; top: 50%; margin-top: -12px; color: #0b0b0b; }
+header .banners { height: 276px; }
+header .banners .banner { width: 100%; height: 100%; max-width: 100%; background: no-repeat top center; -webkit-background-size: auto 100%; -moz-background-size: auto 100%; background-size: auto 100%; }
+
+header .bot { height: 65px; }
+header .bot .menu { width: 800px; height: 35px; padding: 15px 0; }
+header .bot .menu ul { margin: 0; padding: 0; list-style: none; height: 35px; }
+header .bot .menu ul li { display: inline-block; position: relative; padding: 0 8px 0 17px; height: 35px; vertical-align: top; }
+header .bot .menu ul li:first-child { padding-left: 0; }
+header .bot .menu ul li:first-child span.bullet { display: none; }
+header .bot .menu ul li a { font: 16px/35px 'Futuris'; color: #000000; text-decoration: none; display: block; padding: 0 15px; }
+header .bot .menu ul li.active a { background: #0c2d4c; color: #ffffff; }
+header .bot .menu ul li.home { background: url(../images/home.png) no-repeat left center; }
+header .bot .menu ul li.home a { font-size: 0; }
+header .bot .menu ul li.home a:hover, header .bot .menu ul li.active.home a { background: none; }
+header .bot .menu ul li a:hover { background: #0c2d4c; color: #ffffff; }
+header .bot .menu ul li span.bullet { width: 4px; height: 4px; background: #000000; display: block; position: absolute; top: 50%; margin-top: -2px; border-radius: 2px; left: 0; }
+header .bot .menu ul li ul { display: none; }
+
+header .bot .social { position: absolute; right: 0; top: 19px; }
+header .bot .social .block { display: inline-block; width: 29px; height: 28px; margin-left: 9px; }
+header .bot .social a { display: block; width: 29px; height: 28px; background: url('/images/social.png') no-repeat center right; }
+header .bot .social a:hover { background-position: center left; }
+
+header .line { height: 1px; background: #1e3e5d; background: -moz-linear-gradient(left, #1e3e5d 0%, #ded0c8 100%); background: -webkit-gradient(linear, left top, right top, color-stop(0%,#1e3e5d), color-stop(100%,#ded0c8)); background: -webkit-linear-gradient(left, #1e3e5d 0%,#ded0c8 100%); background: -o-linear-gradient(left, #1e3e5d 0%,#ded0c8 100%); background: -ms-linear-gradient(left, #1e3e5d 0%,#ded0c8 100%); background: linear-gradient(to right, #1e3e5d 0%,#ded0c8 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e3e5d', endColorstr='#ded0c8',GradientType=1 ); }
+
+footer { width: 100%; min-width: 940px; height: 71px; margin-top: -72px; border-top: 1px solid #dedddd; background: #e9e9e9; position: relative; overflow: hidden; }
+footer a.logo { width: 115px; line-height: 71px; display: inline-block; }
+footer a.logo img { vertical-align: middle; }
+footer .title { display: inline-block; vertical-align: middle; font: 18.46px 'Futuris'; text-transform: uppercase; color: #696969; padding-left: 20px; position: relative; }
+footer .title .bullet { width: 6px; height: 6px; border-radius: 3px; background: #949494; position: absolute; left: 0; top: 50%; margin-top: -3px; }
+footer a.dev { display: inline-block; vertical-align: middle; position: absolute; right: 0; height: 40px; top: 50%; margin-top: -20px; color: #0b0b0b; }
+
+.content { width: 100%; position: relative; overflow: hidden; padding-bottom: 20px; font-family: 'Futuris'; }
+.content h1 { font: 35px 'Futuris'; color: #000000; }
+img { border: none; }
+
+.content .advs { position: relative; margin: 15px 0; }
+.content .advs .block { display: inline-block; position: relative; width: 320px; vertical-align: top; margin-right: 40px; padding-left: 100px; padding: 15px 0px 15px 100px; }
+.content .advs .block:before { position: absolute; left: 0; top: 20px; width: 69px; height: 69px; line-height: 69px; font-family: 'MyriadPro'; font-size: 45px; font-weight: bold; color: #203e5b; text-align: center; border: 2px solid #203e5b; border-radius: 40px; }
+.content .advs .block:nth-child(1):before { content: "1"; }
+.content .advs .block:nth-child(2):before { content: "2"; }
+.content .advs .block:nth-child(3):before { content: "3"; }
+.content .advs .block:nth-child(4):before { content: "4"; }
+.content .advs .block .block-title { font: 24px 'Futuris'; margin-bottom: 10px; color: #000000; }
+.content .advs .block .block-content { font: 14px 'MyriadPro'; color: #3c3c3c; }
+
+.content .test-access { background: #f8f8f8; height: 117px; position: relative; }
+.content .test-access .cbg { height: 115px; background: #fdf0e7; position: absolute; left: 0; right: 50%; border-top: 1px solid #fcebdf; border-bottom: 1px solid #fcebdf; }
+.content .test-access .inner .info { width: 755px; height: 115px; display: inline-block; position: relative; background: #fdf0e7; border-top: 1px solid #fcebdf; border-bottom: 1px solid #fcebdf; vertical-align: top; }
+.content .test-access .inner .info h2 { font: 30px 'Futuris'; color: #505050; margin-bottom: 0px; }
+.content .test-access .inner .info p { font: 20px 'Futuris'; color: #505050; margin-top: 15px; }
+.content .test-access .inner .info p span { color: #e12e0b; }
+.content .test-access .inner .info .info-lnb { position: absolute; top: 62px; right: -27px; width: 63px; height: 35px; border-bottom: 1px solid #fcebdf; background: #fdf0e7; -moz-transform: rotate(-68deg); -ms-transform: rotate(-68deg); -webkit-transform: rotate(-68deg); -o-transform: rotate(-68deg); transform: rotate(-68deg); }
+.content .test-access .inner .info .info-lnt { position: absolute; top: 17px; right: -27px; width: 63px; height: 35px; border-bottom: 1px solid #fcebdf; background: #fdf0e7; -moz-transform: rotate(-112deg); -ms-transform: rotate(-112deg); -webkit-transform: rotate(-112deg); -o-transform: rotate(-112deg); transform: rotate(-112deg); }
+.content .test-access .inner .btn { display: inline-block; width: 88px; text-align: center; margin-top: 15px; margin-left: 65px; text-decoration: none; font-family: 'Futuris'; color: #ffffff; font-size: 20px; line-height: 88px; border: 1px solid #194872; border-radius: 45px; background: #0b2952; background: -moz-linear-gradient(top, #114081 0%, #0b2952 100%); background: -webkit-linear-gradient(top, #114081 0%, #0b2952 100%); background: -o-linear-gradient(top, #114081 0%, #0b2952 100%); background: -ms-linear-gradient(top, #114081 0%, #0b2952 100%); background: linear-gradient(top, #114081 0%, #0b2952 100%); box-shadow: 0 1px 2px rgba(255, 255, 255, 1) inset, 0 1px 1px rgba(0, 0, 0, .19);  word-wrap: normal; margin-right: -4px; text-shadow: 0 -1px 0 rgba(0, 0, 0, .2); outline: none;}
+
+.content .services { position: relative; }
+.content .services .block { display: inline-block; position: relative; width: 230px; height: 56px; vertical-align: top; padding-left: 75px; font: 20px/25px 'Futuris'; margin-bottom: 16px; }
+.content .services .block:before { content: ""; position: absolute; width: 56px; height: 56px; left: 0; top: 0; background: #0c2d4c; background: -moz-linear-gradient(top, #194976 0%, #0c2d4c 100%); background: -webkit-linear-gradient(top, #194976 0%, #0c2d4c 100%); background: -o-linear-gradient(top, #194976 0%, #0c2d4c 100%); background: -ms-linear-gradient(top, #194976 0%, #0c2d4c 100%); background: linear-gradient(top, #194976 0%, #0c2d4c 100%); }
+.content .services .block:after { content: ""; position: absolute; width: 56px; height: 56px; background: url('/images/services.png') no-repeat left center; left: 0; top: 0; }
+.content .services .block.design:after { background-position: left center; }
+.content .services .block.panel:after { background-position: -112px center; }
+.content .services .block.hosting:after { background-position: -224px center; }
+.content .services .block.makeup:after { background-position: -56px center; }
+.content .services .block.management:after { background-position: -168px center; }
+.content .services .block.support:after { background-position: -280px center; }
+.content .services .block div, .content .services .block p { height: 56px; vertical-align: middle; display: table-cell; margin: 0; }
