@@ -22,7 +22,6 @@ return CMap::mergeArray(
 		'import' => array(
 			'application.models.*',
 			'application.components.*',
-			'application.extensions.mailer.YiiMailMessage',
 		),
 		'components' => array(
 			'user' => array(
@@ -48,7 +47,7 @@ return CMap::mergeArray(
 				),
 			),
 			'ih' => array(
-				'class' => 'CImageHandler',
+				'class' => 'ext.CImageHandler',
 			),
 			'config' => array(
 				'class' => 'CConfig',
@@ -56,6 +55,7 @@ return CMap::mergeArray(
 		),
 		'modules' => array(
 			'callback',	
+			'catalog',	
 		),
 		'behaviors' => array(
 			'runBranch' => array(

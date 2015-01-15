@@ -1,0 +1,4 @@
+ <?
+    $this->widget('CTreeView',$treeconfig);
+?>
+

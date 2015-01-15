@@ -1,0 +1,1 @@
+<?php $this->widget('application.modules.catalog.components.CatalogCatToMainWidget'); ?>

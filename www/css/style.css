@@ -41,16 +41,16 @@ body { height: 100%; margin: 0; color: #000000; font-weight: normal; font-style:
 .clear { clear: both; }
 
 .inner { width: 89.34%; padding: 0 5.33%; max-width: 1072px; margin: 0 auto; position: relative; }
-.track-line { height: 26px; background: url('../images/tracks.png') center; }
-.delta-line { height: 9px; background: url('../images/delta.png') center; position: absolute; width: 100%; }
-.delta-line.r { background-image: url('../images/delta-r.png'); top: 0; }
+.track-line { height: 26px; background: url('/images/tracks.png') repeat-x center; }
+.delta-line { height: 9px; background: url('/images/delta.png') repeat-x center; position: absolute; width: 100%; }
+.delta-line.r { background-image: url('/images/delta-r.png'); top: 0; }
 
-header { position: relative; width: 100%; height: auto; max-height: 320px; background: #f1e7d7 url('../images/tex.png') center; overflow: hidden; padding-bottom: 9px; }
+header { position: relative; width: 100%; height: auto; max-height: 320px; background: #f1e7d7 url('/images/tex.png') center; overflow: hidden; padding-bottom: 9px; }
 header .delta-line { bottom: 0; }
 header .top { display: table; }
 header .top .logo { display: table-cell; width: 62.5%; vertical-align: middle; padding: 3% 0; }
 header .top .logo img { width:100%; vertical-align: middle; }
-header .top .helps { display: table-cell; width: 37.5%; vertical-align: middle; padding-left: 12.78%; background: url('../images/helps.png') no-repeat 18% center; line-height: 1.5em; color: #53443e; font-size: 1.4em; font-family: 'AFuturaRoundDemi'; }
+header .top .helps { display: table-cell; width: 37.5%; vertical-align: middle; padding-left: 12.78%; background: url('/images/helps.png') no-repeat 18% center; line-height: 1.5em; color: #53443e; font-size: 1.4em; font-family: 'AFuturaRoundDemi'; }
 header .bot { display: table; width: 100%; padding: 3% 0; }
 header .bot .bot-l, header .bot .bot-r { display: table-cell; vertical-align: top; position: relative; vertical-align: middle; }
 header .bot .bot-l { width: 56.9%; }
@@ -65,7 +65,7 @@ header .bot .bot-r a img { max-width: 100%; max-height: 100%; }
 .tcr { display: table-cell; text-align: right; }
 .fl { float: left; }
 
-footer { width: 100%; height: 126px; margin-top: -151px; padding-top: 25px; background: #f1e7d7 url('../images/tex.png') center; position: relative; overflow: hidden; }
+footer { width: 100%; height: 126px; margin-top: -151px; padding-top: 25px; background: #f1e7d7 url('/images/tex.png') center; position: relative; overflow: hidden; }
 footer .bot { display: table; }
 footer .logo, footer .dev { display: table-cell; vertical-align: middle; }
 footer .logo { width: 53.17%; height: 100px; max-width: 670px;  }
@@ -76,9 +76,14 @@ footer .dev img { max-width: 161px; width: 100%; vertical-align: middle; }
 .content{ width:100%; position: relative; overflow: hidden; padding-bottom: 20px; font-family: 'AFuturaRound'; }
 
 .s-btn { display: inline-block; text-decoration: none; text-transform: uppercase; font-family: 'AFuturaRoundDemi'; color: #ffffff; font-size: 1.3em; padding: 0 3%; line-height: 2.6168em; border: 1px solid #cd5927; border-radius: 1.3em; background: #f16022; background: -moz-linear-gradient(top, #f59166 0%, #f16123 100%); background: -webkit-linear-gradient(top, #f59166 0%, #f16123 100%); background: -o-linear-gradient(top, #f59166 0%, #f16123 100%); background: -ms-linear-gradient(top, #f59166 0%, #f16123 100%); background: linear-gradient(top, #f59166 0%, #f16123 100%); box-shadow: 0 2px 0 rgba(255, 255, 255, .44) inset, 0 1px 1px rgba(0, 0, 0, .19);  word-wrap: normal; margin-right: -4px; text-shadow: 0 -1px 0 rgba(0, 0, 0, .2); outline: none; }
+.s-btn.par { margin-right: 0; }
 .sc-btn { display: inline-block; background: #d4cdae; background: -moz-linear-gradient(top, #d4cdae 0%, #ded9c2 100%); background: -webkit-linear-gradient(top, #d4cdae 0%, #ded9c2 100%); background: -o-linear-gradient(top, #d4cdae 0%, #ded9c2 100%); background: -ms-linear-gradient(top, #d4cdae 0%, #ded9c2 100%); background: linear-gradient(top, #d4cdae 0%, #ded9c2 100%); box-shadow: 0 1px 1px rgba(255, 255, 255, 1) , 0 1px 3px rgba(0, 0, 0, .25) inset; height: 2.4375em; line-height: 2.4375em; border-radius: 1.4em; font-size: 1em; margin-top: 1px; margin-right: 1%;}
 .sc-btn:hover { background: #76cdd7; }
 .sc-sh-btn { display: inline-block; border: 1px solid #cecdcd; border-radius: 1.4em; height: 2.3em; line-height: 2.4em; text-decoration: none; background: #f0ebd8; background: -moz-linear-gradient(top, #f0ebd8 0%, #dad6c2 100%); background: -webkit-linear-gradient(top, #f0ebd8 0%, #dad6c2 100%); background: -o-linear-gradient(top, #f0ebd8 0%, #dad6c2 100%); background: -ms-linear-gradient(top, #f0ebd8 0%, #dad6c2 100%); background: linear-gradient(top, #f0ebd8 0%, #dad6c2 100%); font-family: 'Myriad Pro'; color: #817877; text-transform: uppercase; padding: 0 4%; font-size: 1em; box-shadow: 0 2px 0 rgba(255, 255, 255, .44) inset, 0 1px 1px rgba(0, 0, 0, .19); }
+.s-btn.back { background: none; border: none; box-shadow: none; padding: 0; position: relative; padding-left: 12%; font-family: 'AFuturaRoundDemi'; text-transform: uppercase; color: #52443e; }
+.s-btn.back img { position: absolute; width: 32%; left: 0; }
+.s-btn.favorite { padding-left: 13%; position: absolute; right: 0; }
+.s-btn.favorite img { width: 19%; position: absolute; left: 13px; top: 9px; }
 
 .content p { font-family: 'Verdana'; font-size: 0.9375em; line-height: 1.2667em; margin: 2px 0 ; clear: both; }
 .content h1, h2, h3 { font-family: 'AFuturaRoundDemi'; text-align: center; font-weight: normal; }
@@ -99,10 +104,67 @@ footer .dev img { max-width: 161px; width: 100%; vertical-align: middle; }
 .content table tbody tr:last-child td:last-child { border-radius: 0 0 8px 0; }
 .content ul { margin: 0; padding: 0; list-style-type: none; margin-bottom: 8px; }
 .content ol { margin: 0 0 0 20px; margin-bottom: 25px;}
-.content ul li { padding: 0; background: url('../images/track.png') no-repeat left 4px; }
+.content ul li { padding: 0; background: url('/images/track.png') no-repeat left 4px; }
 .content ul li p { margin: 0; text-indent: 20px;  }
 .content ol li { margin: 0; padding: 0; }
 
+/* Виджет категорий */
+.catalog-categories { padding: 40px 0 20px 0; }
+.catalog-categories .categories { display: table; width: 100%; }
+.catalog-categories .categories .category { display: table-cell; width: 33%; vertical-align: top; }
+.catalog-categories .categories .category .image { padding: 0 3%; }
+.catalog-categories .categories .category .image img { margin: 0; width: 100%; }
+.catalog-categories .categories .category .title { text-align: center; padding-top: 25px; }
+.catalog-categories .categories .category .title a { text-decoration: none; font-family: 'AFuturaRoundDemi'; font-size: 2.38875em; color: #1f1f1f; }
+/* Виджет категорий END */
+
+/* Одна категория */
+.catalog-category { padding: 20px 0; }
+.catalog-category h1 { margin: 0; font-size: 1.9375em; line-height: 1.1613em; background: url('/images/cat-border.svg') repeat-x center center; }
+.catalog-category h1.dog { background-image: url('/images/dog-border.svg'); }
+.catalog-category h1.bird { background-image: url('/images/bird-border.svg'); }
+.catalog-category h1 span { padding: 0 15px; background: #ffffff; }
+.catalog-category .products { padding-top: 15px; }
+.catalog-category .products .product { float: left; width: 30%; margin-right: 5%; margin-bottom: 15px; }
+.catalog-category .products .product.nm3 { margin-right: 0; }
+.catalog-category .products .product img { margin: 0; width: 100%; }
+.catalog-category .products .track-line { clear: both; padding: 10px 0; }
+.catalog-category .products .product a { text-decoration: none; font-family: 'AFuturaRoundDemi'; font-size: 1.0625em; color: #1f1f1f; }
+.catalog-category .products .product .title { padding: 2px 0 2px 45px; background: url('/images/ic-name.png') no-repeat 14px center; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
+.catalog-category .products .product .age { padding: 2px 0 2px 45px; background: url('/images/ic-age.png') no-repeat 14px center; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
+.catalog-category .products .product .sex { padding: 2px 0 2px 45px; background: url('/images/ic-sex.png') no-repeat 14px center; }
+.catalog-category .products .product .image { position: relative; }
+.catalog-category .products .product .image .add-favorite, .catalog-category .products .product .image .add-favorite-hover { position: absolute; left: 5px; bottom: 10px; width: 18%; }
+.catalog-category .products .more { text-align: center; clear: both; }
+/* Одна категория END */
+
+/* Один товар */
+.catalog-category .product-view { position: relative; }
+.catalog-category .product-view .left { display: inline-block; width: 50%; vertical-align: top; }
+.catalog-category .product-view .right { display: inline-block; width: 48%; padding-left: 2%; vertical-align: top; }
+.catalog-category .product-view img { margin: 0; }
+.catalog-category .product-view h1 { margin-bottom: 15px; }
+.catalog-category .product-view .left .image img { width: 100%; }
+.catalog-category .product-view .left .previews a { float: left; width: 23.5%; padding-right: 2%; }
+.catalog-category .product-view .left .previews a:last-child { padding-right: 0; }
+.catalog-category .product-view .left .previews a img { width: 100%; }
+
+.catalog-category .product-view .right { font-family: 'AFuturaRoundDemi'; font-size: 1.0625em; color: #1f1f1f; }
+.catalog-category .product-view .right div { font-size: 1.5em; padding-top: 4px; padding-bottom: 4px; }
+.catalog-category .product-view .right .title { padding-left: 35px; background: url('/images/ic-name.png') no-repeat 7px center; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
+.catalog-category .product-view .right .age { padding-left: 35px; background: url('/images/ic-age.png') no-repeat 7px center; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
+.catalog-category .product-view .right .sex { padding-left: 35px; background: url('/images/ic-sex.png') no-repeat 7px center; }
+.catalog-category .product-view .right .city { padding-left: 35px; background: url('/images/ic-city.png') no-repeat 7px center; }
+.catalog-category .product-view .right .med { padding-left: 35px; background: url('/images/ic-med.png') no-repeat 7px center; }
+.catalog-category .product-view .right .terms { padding-left: 35px; background: url('/images/ic-home.png') no-repeat 7px center; }
+.catalog-category .product-view .right .track-line { padding: 10px 0; }
+.catalog-category .product-view .right h3 { margin: 0; text-align: left; color: #c94d17; font-size: 1.1875em; margin-bottom: 5px; }
+.catalog-category .product-view .right .cur { padding-left: 35px; background: url('/images/ic-cur.png') no-repeat 7px center; }
+.catalog-category .product-view .right .phone { padding-left: 35px; background: url('/images/ic-phone.png') no-repeat 7px center; }
+.catalog-category .product-view .right .s-btn { color: #ffffff; margin-top: 10px; }
+.catalog-category .product-view .info { font-family: Verdana; font-size: 0.9375em; line-height: 1.33em; }
+.catalog-category .product-view .info h2 { color: #1f1f1f; font-size: 1.5625em; text-align: left; background: url('/images/ic-info.png') no-repeat left center; margin: 0; padding: 18px 0 18px 35px; }
+/* Один товар */
 
 @media screen and (max-width: 1024px)
 {
@@ -110,12 +172,16 @@ footer .dev img { max-width: 161px; width: 100%; vertical-align: middle; }
 	.s-btn { font-size: 0.875em; }
 	header .bot .bot-l { width: 50%; }
 	header .bot .bot-r  { font-size: 0.875em; }
+	.s-btn.favorite img { top: 5px; }
+	.catalog-categories .categories .category .title a { font-size: 1.875em; }
+	.catalog-category .product-view .right div { font-size: 1.2em; }
 }
 
 @media screen and (max-width: 980px)
 {
 	header .top .helps { font-size: 1em; padding-left: 14.5%; }
 	header .bot .bot-r  { font-size: 0.825em; }
+	
 }
 
 @media screen and (max-width: 768px)
@@ -129,14 +195,32 @@ footer .dev img { max-width: 161px; width: 100%; vertical-align: middle; }
 	
 	header .bot .bot-l .s-btn { margin: 0; }
 	.par { position: absolute; right: 0;}
+	.s-btn.favorite { position: absolute; padding-left: 10%; }
+	.s-btn.favorite img { top: 6px; width: 16%; }
+	.s-btn.back { padding-left: 9%; }
+	.s-btn.back img { width: 31%; }
 	.content p img { width: 49%; }
 	.content { font-size: 0.9em; }
 	.content ul li { background-position: left 3px; }
+	
+	.catalog-categories { padding: 20px 0 10px 0; }
+	.catalog-categories .categories .category .title a { font-size: 1.5em; }
+	
+	.catalog-category .products .product { width: 47.5%; }
+	.catalog-category .products .product.nm3 { margin-right: 5%; }
+	.catalog-category .products .product.nm2 { margin-right: 0; }
+	.catalog-category .products .track-line { display: none; }
+	
+	.catalog-category .product-view .left, .catalog-category .product-view .right { width: 100%; padding: 0; }
+	.catalog-category .product-view .info { padding-top: 10px; }
 }
 
 @media screen and (max-width: 480px)
 {
 	.s-btn { font-size: 0.6675em; }
+	.s-btn.favorite { padding-left: 8%; }
+	.s-btn.favorite img { top: 7px; width: 13%; left: 7px; }
+	.s-btn.back img { width: 29%; }
 	header .top .logo { width: 82.2368%; }
 	header .bot .bot-r  { font-size: 0.75em; }
 	footer .dev { width: 22.86%; padding-left: 5%; }
@@ -144,4 +228,15 @@ footer .dev img { max-width: 161px; width: 100%; vertical-align: middle; }
 	.content { font-size: 0.8em; }
 	.content table { font-size: 0.8em; }
 	.content ul li { background-position: left 2px; }
+	.catalog-categories { padding: 0; }
+	.catalog-categories .categories .category { display: table; width: 100%; padding: 10px 0; }
+	.catalog-categories .categories .category .image { display: table-cell; width: 50%; }
+	.catalog-categories .categories .category .title { display: table-cell; width: 50%; padding-top: 0; vertical-align: middle; }
+	
+	.catalog-category h1 { font-size: 1.5em; }
+	.catalog-category .products .product { width: 100%; }
+	.catalog-category .products .product.nm3 { margin-right: 0%; }
+	.catalog-category .products .product.nm2 { margin-right: 0; }
+	
+	.catalog-category .product-view .right .s-btn { font-size: 0.95em; }
 }

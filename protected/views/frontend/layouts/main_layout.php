@@ -24,8 +24,13 @@
 				<div class="track-line"></div>
 				<div class="bot">
 					<div class="bot-l">
-						<a href="#" class="s-btn">Я хочу помочь</a>
-						<a href="#" class="s-btn par">Предложить животное</a>
+						<?php if ($this->layout == 'first_page'): ?>
+							<a href="/ja-hochu-pomoch" class="s-btn">Я хочу помочь</a>
+							<a href="/" class="s-btn par">Предложить животное</a>
+						<?php else: ?>
+							<a href="/" class="s-btn back"><img src="/images/back.png" alt=""/>Вернуться</a>
+							<a href="/catalog/favorite" class="s-btn favorite par" style="display:<?php echo (count(Yii::app()->session['favorite']) ? 'inline-block' : 'none'); ?>"><img src="/images/favorite.png" alt=""/>В избранном</a>
+						<?php endif; ?>
 					</div>
 					<div class="bot-r">
 						<a href="#" class="sc-btn"><img src="/images/soc-in.png" alt=""/></a>
