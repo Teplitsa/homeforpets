@@ -1,6 +1,6 @@
 <?
 $cs=Yii::app()->clientScript;
-$cs->registerScriptFile('/js/jquery.synctranslit.js', CClientScript::POS_HEAD);
+$cs->registerScriptFile('/js/admin/jquery.synctranslit.js', CClientScript::POS_HEAD);
 $cs->registerScript('translit', "
     $('#attrTitle').syncTranslit({destination: 'slug'});
 

@@ -1,14 +1,14 @@
 <?php
 Yii::app()->clientScript->registerScript('product',"
-  $('.addFasad').on('click', function() {
+  $(document).on('click', '.addFasad', function() {
 	  block = $(this).parent('p').parent('div');
 		$('<p class=\"more_img\"><input type=\"file\" name=\"CatalogImage[image][]\"><span class=\"addFasad\">+</span><span class=\"delFasad\">&ndash;</span></p>').appendTo(block);
 	});
-  $('.delFasad').on('click', function() {
+  $(document).on('click', '.delFasad', function() {
 	  block = $(this).parent('p');
 		$(block).remove();
 	});
-  $('.addPlan').on('click', function() {
+  $(document).on('click', '.addPlan', function() {
 	  number = 0+String(parseInt($(this).prev('input').attr(\"name\").replace('CatalogProductAttribute[0', ''))+1);
 	  attr = 0+String(parseInt($(this).prev('input').attr(\"name\").replace('CatalogProductAttribute[0', '')));
 
@@ -18,7 +18,7 @@ Yii::app()->clientScript->registerScript('product',"
 		$(this).remove();
 
 	});
-  $('.delPlan').on('click', function() {
+  $(document).on('click', '.delPlan', function() {
 	  attr = $(this).parent('div').prev('div');
 		$('<span class=\"addPlan\">+</span><span class=\"delPlan\">-</span>').appendTo(attr);
 
@@ -86,7 +86,7 @@ $cs->registerScript('change_brand', "
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'id_category'); ?>
-		<?php echo $form->dropDownList($model,'id_category', CHtml::listData(CatalogCategory::model()->findAll(), 'id', 'title')); ?>
+		<?php echo $form->dropDownList($model,'id_category', CHtml::listData(CatalogCategory::model()->findAll('parent_id = 0'), 'id', 'title')); ?>
 		<?php echo $form->error($model,'id_category'); ?>
 	</div>
 
@@ -245,6 +245,12 @@ $cs->registerScript('change_brand', "
         <?php echo $form->labelEx($model,'hide'); ?>
         <?php echo $form->checkBox($model,'hide',array('checked'=>(!$model->hide)?'checked':false)); ?>
         <?php echo $form->error($model,'hide'); ?>
+    </div>
+
+    <div class="row">
+        <?php echo $form->labelEx($model,'attach'); ?>
+        <?php echo $form->checkBox($model,'attach'); ?>
+        <?php echo $form->error($model,'attach'); ?>
     </div>
 
     

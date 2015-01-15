@@ -6,5 +6,5 @@ Yii::app()->clientScript->registerScript('check-all',"
 	});
 ", CClientScript::POS_READY);
 ?>
-<h2>Категории, в которых используется атрибут</h2>
+<h2>Категории, в которых используется характеристика</h2>
 <?php $this->widget('CTreeView', array('data' => $data_tree)); ?>

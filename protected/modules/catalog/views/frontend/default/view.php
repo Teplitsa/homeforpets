@@ -64,6 +64,9 @@ Yii::app()->clientScript->registerScript('catalog-products', "
 		}
 		$this->widget('application.modules.catalog.components.SearchboxWidget', array('selectionParameters'=>$selectionParameters));*/
 	?>
+	<?/*div class="search-form">
+		Формочка
+	</div*/?>
 	<div class="products">
 		<?php $this->widget('zii.widgets.CListView', array(
 			'id' => 'product-list',

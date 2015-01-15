@@ -1,14 +1,14 @@
 <?php
 $this->breadcrumbs=array(
-	'Атрибуты товаров',
+	'Характеристики животных',
 );
 ?>
 
-<h1>Управление атрибутами товаров</h1>
+<h1>Управление характеристиками животных</h1>
 
 <?php 
-echo CHtml::link('+ Добавить атрибут', array('create'), array('class'=>'add_element'));
-$this->widget('application.extensions.admingrid.MyRGridView', array(
+echo CHtml::link('+ Добавить характеристику', array('create'), array('class'=>'add_element'));
+$this->widget('ext.plusone.ExtGridView', array(
 	'id'=>'catalog-attribute-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
@@ -28,11 +28,11 @@ $this->widget('application.extensions.admingrid.MyRGridView', array(
 		),
 		//'required',
 		array(
-			'class'=>'MyRButtonColumn',
+			'class'=>'ExtButtonColumn',
 			'template' => '{update}{delete}',
 		),
         array(
-            'class'=>'application.extensions.SSortable.SSortableColumn',
+            'class'=>'ext.SSortable.SSortableColumn',
         ),
 	),
 )); ?>

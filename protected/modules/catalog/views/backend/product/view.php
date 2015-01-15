@@ -5,15 +5,18 @@ $cs=Yii::app()->clientScript;
 $cs->registerCssFile('/css/catalog/admin/catalog_admin.css');
 
 // Подключаем фанси-бокс
-$cs->registerScriptFile('/js/admin/jquery.fancybox-1.3.4.js', CClientScript::POS_HEAD);
-//$cs->registerScriptFile('/js/jquery.mousewheel-3.0.4.pack.js', CClientScript::POS_HEAD);
-$cs->registerCssFile('/css/jquery.fancybox-1.3.4.css');
-$cs->registerScript('images', "
-  $('.showPhoto, a[rel=example_group]').fancybox({
-		overlayShow: true,
-		overlayOpacity: 0.5,
-		zoomSpeedIn: 300,
-		zoomSpeedOut:300
+$cs->registerScriptFile('/js/jquery.fancybox.js', CClientScript::POS_HEAD);
+$cs->registerCssFile('/css/fancybox/jquery.fancybox.css');
+
+Yii::app()->clientScript->registerScript('images', "
+  $('a[rel=example_group]').fancybox({
+		openEffect  : 'none',
+		closeEffect	: 'none',
+		helpers : {
+			overlay : {
+				locked : false
+			}
+		}
 	});
 ", CClientScript::POS_READY);
 
@@ -47,13 +50,13 @@ $cs->registerScript('shadd', "
 <h1><?php echo $model->title; ?></h1>
 <?echo CHtml::link('Просмотр на сайте', $model->fullLink, array('class'=>'view_on_site', 'target'=>'_blank'));?>
 <?echo CHtml::link('Редактировать животное', array('update', 'id'=>$model->id), array('class'=>'add_element'));?>
-<?echo CHtml::link('Создать дубликат животного', array('duplicate', 'id'=>$model->id), array('class'=>'add_element'));?>
+<?//echo CHtml::link('Создать дубликат животного', array('duplicate', 'id'=>$model->id), array('class'=>'add_element'));?>
 <div class="osn_photo">
     <h2>Основное фото</h2>
     <?php
         if($model->photo){
-            echo CHtml::link(CHtml::image('/upload/catalog/product/medium/' . $model->photo, $model->title) , array('/upload/catalog/product/' . $model->photo), array('class' => 'showPhoto'));
-        } else{echo CHtml::image('/css/catalog/admin/nophoto.jpg', $model->title);}
+            echo CHtml::link(CHtml::image('/upload/catalog/product/medium/' . $model->photo, $model->title) , array('/upload/catalog/product/' . $model->photo), array('rel' => 'example_group'));
+        } else{echo CHtml::image('/images/nophoto.jpg', $model->title);}
     ?>
 </div>
 <div class="dop_photo">

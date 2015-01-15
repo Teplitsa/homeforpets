@@ -53,7 +53,7 @@ class CatalogConfig extends CActiveRecord
 			array('keywords, description', 'length', 'max'=>1000),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-            array('text, layout', 'safe'),
+            array('text, layout, attached', 'safe'),
 			array('id, title, keywords, description', 'safe', 'on'=>'search'),
 		);
 	}
@@ -93,6 +93,7 @@ class CatalogConfig extends CActiveRecord
             'no_watermark'=>'Не накладывать водяной знак',
             'watermark_x'=>'Отступ по горизонтали',
             'watermark_y'=>'Отступ по вертикали',
+            'attached'=>'Кол-во пристроенных',
 		);
 	}
 

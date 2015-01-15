@@ -74,7 +74,7 @@ class CatalogProduct extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('title, link','required'),
-			array('age_y, age_m, age_w, sex, medical, terms', 'numerical', 'integerOnly'=>true),
+			array('age_y, age_m, age_w, sex, medical, terms, attach', 'numerical', 'integerOnly'=>true),
 			array('photo, title, link, city, curator_name, curator_phone, owner_name, owner_phone', 'length', 'max'=>256),
 			array('id_category', 'length', 'max' => 11),
             array('link', 'unique', 'message' => 'Животное со ссылкой {value} уже существует!'),
@@ -162,7 +162,7 @@ class CatalogProduct extends CActiveRecord
             'views'=>'Количество просмотров',
             'brand'=>'Производителя',
             'brand_collection'=>'Коллекция бренда',
-            'hide'=>'Отображение в каталоге',
+            'hide'=>'Отображать на сайте?',
             'noyml'=>'Выгрузка в Яндекс.Маркет',
             'state'=>'Состояние',
             'age_y' => 'Возраст (лет)',
@@ -176,6 +176,7 @@ class CatalogProduct extends CActiveRecord
             'curator_phone' => 'Телефон куратора',
             'owner_name' => 'Имя приютивщего',
             'owner_phone' => 'Телефон приютивщего',
+            'attach' => 'Пристроили?',
 		);
 	}
 
@@ -526,6 +527,14 @@ class CatalogProduct extends CActiveRecord
 				}
 			}
 
+			// Пристроили
+			if ($this->attach and $this->id_category < 4)
+				$this->id_category += 3;
+				
+			// Обратно вернули
+			if (!$this->attach and $this->id_category > 3)
+				$this->id_category -= 3;
+				
 			return true;
 		}
 		else
@@ -546,6 +555,9 @@ class CatalogProduct extends CActiveRecord
 				$image->save();
 			}
 		}
+		
+		$attached = self::model()->count('attach=:attach', array(':attach' => 1));
+		$this->dbConnection->createCommand()->update('catalog_config', array('attached' => $attached));
     }
 
     //**********************************************************************
@@ -801,7 +813,7 @@ class CatalogProduct extends CActiveRecord
     public function getFullLink(){
             if(isset($this->idCategory)){
                          // возвращаем путь к категории товара и прибавляем в конце id
-                        return '/catalog'.CatalogCategory::getCategoryRoute($this->idCategory->link).'/'.$this->link.'.html';
+                        return '/catalog'.CatalogCategory::getCategoryRoute($this->idCategory->link).$this->link.'.html';
             }  else {return '/catalog/'.$this->link.'.html';}
     }
 
@@ -1002,5 +1014,22 @@ class CatalogProduct extends CActiveRecord
 	public function getTermsDesc()
 	{
 		return (array_key_exists($this->terms, $this->termsList) ? $this->termsList[$this->terms] : null);
+	}
+	
+	public static function getAttachCount()
+	{
+		return self::model()->count('attach=:attach', array(':attach' => 1));
+	}
+	
+	public static function getAttachWordForm($attach)
+	{
+		$result = 'питомцу';
+		while ($attach > 20)
+			$attach = substr($attach, -(strlen($attach) - 1));
+		
+		if ($attach > 1)
+			$result = 'питомцам';
+			
+		return $result;	
 	}
 }

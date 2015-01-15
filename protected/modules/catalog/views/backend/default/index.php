@@ -68,7 +68,7 @@ $('.delete').click(function(){
     </div><!-- search-form -->
 </div>
 */?>
-<?php if (!$category->id): ?>
+<?php if (!$category->id or in_array($category->id, array(1,2,3))): ?>
 <div class="block">
 <h2>Список категорий</h2>
 <?php
@@ -78,7 +78,11 @@ $('.delete').click(function(){
 		'dataProvider' => $categoryDataProvider,
 		'emptyText' => 'Нет категорий',
 		'columns' => array(
-			'title',
+			array(
+				'name'=>'title',
+				'type'=>'raw',
+				'value'=>'CHtml::link(CHtml::encode($data->title), array("index", "id"=>$data->id))'
+			),
 			array(
 				'header' => 'Животные',
 				'type' => 'raw',
@@ -98,7 +102,8 @@ $('.delete').click(function(){
 
 ?>
 </div>
-<?php else: ?>
+<?php endif; ?>
+<?php if (in_array($category->id, array(1,2,3)) or in_array($category->parent_id, array(1,2,3))): ?>
 <h2>Список животных</h2>
 <?php
 echo CHtml::link('+ Добавить животное', array('product/create', 'id_category'=>$category->id), array('class'=>'add_element'));

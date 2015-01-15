@@ -50,7 +50,8 @@ header .delta-line { bottom: 0; }
 header .top { display: table; }
 header .top .logo { display: table-cell; width: 62.5%; vertical-align: middle; padding: 3% 0; }
 header .top .logo img { width:100%; vertical-align: middle; }
-header .top .helps { display: table-cell; width: 37.5%; vertical-align: middle; padding-left: 12.78%; background: url('/images/helps.png') no-repeat 18% center; line-height: 1.5em; color: #53443e; font-size: 1.4em; font-family: 'AFuturaRoundDemi'; }
+header .top .helps { display: table-cell; width: 37.5%; vertical-align: middle; padding-left: 12.78%; background: url('/images/helps.png') no-repeat 18% center; line-height: 1.5em; color: #53443e; font-size: 1.4em; font-family: 'AFuturaRoundDemi'; position: relative; }
+header .top .helps .att { position: absolute; top: 40%; display: none; width: 82%; left: 0; text-align: center; padding-left: 18%; }
 header .bot { display: table; width: 100%; padding: 3% 0; }
 header .bot .bot-l, header .bot .bot-r { display: table-cell; vertical-align: top; position: relative; vertical-align: middle; }
 header .bot .bot-l { width: 56.9%; }
@@ -104,8 +105,8 @@ footer .dev img { max-width: 161px; width: 100%; vertical-align: middle; }
 .content table tbody tr:last-child td:last-child { border-radius: 0 0 8px 0; }
 .content ul { margin: 0; padding: 0; list-style-type: none; margin-bottom: 8px; }
 .content ol { margin: 0 0 0 20px; margin-bottom: 25px;}
-.content ul li { padding: 0; background: url('/images/track.png') no-repeat left 4px; }
-.content ul li p { margin: 0; text-indent: 20px;  }
+.content ul li { padding: 0; background: url('/images/track.png') no-repeat left 4px; padding-left: 20px; }
+.content ul li p { margin: 0; text-indent: 0px;  }
 .content ol li { margin: 0; padding: 0; }
 
 /* Виджет категорий */
@@ -162,6 +163,8 @@ footer .dev img { max-width: 161px; width: 100%; vertical-align: middle; }
 .catalog-category .product-view .right .cur { padding-left: 35px; background: url('/images/ic-cur.png') no-repeat 7px center; }
 .catalog-category .product-view .right .phone { padding-left: 35px; background: url('/images/ic-phone.png') no-repeat 7px center; }
 .catalog-category .product-view .right .s-btn { color: #ffffff; margin-top: 10px; }
+.catalog-category .product-view .right .s-btn.add-favorite { position: relative; padding-left: 16%; }
+.catalog-category .product-view .right .s-btn.add-favorite img { position: absolute; width: 13%; left: 5%; top: 9px; }
 .catalog-category .product-view .info { font-family: Verdana; font-size: 0.9375em; line-height: 1.33em; }
 .catalog-category .product-view .info h2 { color: #1f1f1f; font-size: 1.5625em; text-align: left; background: url('/images/ic-info.png') no-repeat left center; margin: 0; padding: 18px 0 18px 35px; }
 /* Один товар */
@@ -175,6 +178,8 @@ footer .dev img { max-width: 161px; width: 100%; vertical-align: middle; }
 	.s-btn.favorite img { top: 5px; }
 	.catalog-categories .categories .category .title a { font-size: 1.875em; }
 	.catalog-category .product-view .right div { font-size: 1.2em; }
+	.catalog-category .product-view .right .s-btn.add-favorite { padding-left: 13%; }
+	.catalog-category .product-view .right .s-btn.add-favorite img { top: 7px; }
 }
 
 @media screen and (max-width: 980px)
@@ -189,6 +194,7 @@ footer .dev img { max-width: 161px; width: 100%; vertical-align: middle; }
 	header .top .logo { width: 82.895%; }
 	header .top .helps { width: 12.171%; padding-left: 4.934%; background-position: right; background-size: 90%; }
 	header .top .helps div { display: none; }
+	header .top .helps div.att { display: block; }
 	
 	header .bot .bot-l, header .bot .bot-r { width: 100%; display: block; }
 	header .bot .bot-r { padding-top: 3%; text-align: center;}
@@ -213,6 +219,9 @@ footer .dev img { max-width: 161px; width: 100%; vertical-align: middle; }
 	
 	.catalog-category .product-view .left, .catalog-category .product-view .right { width: 100%; padding: 0; }
 	.catalog-category .product-view .info { padding-top: 10px; }
+	
+	.catalog-category .product-view .right .s-btn.add-favorite { padding-left: 10%; }
+	.catalog-category .product-view .right .s-btn.add-favorite img { top: 6px; }
 }
 
 @media screen and (max-width: 480px)
@@ -239,4 +248,11 @@ footer .dev img { max-width: 161px; width: 100%; vertical-align: middle; }
 	.catalog-category .products .product.nm2 { margin-right: 0; }
 	
 	.catalog-category .product-view .right .s-btn { font-size: 0.95em; }
+	
+	header .top .helps .att { top: 34%; }
+	
+	.catalog-category .product-view .right .s-btn.add-favorite { padding-left: 14%; }
+	
+	.catalog-category h1 { line-height: 1.8em; }
+	.catalog-category h1 span { display: inline-block; }
 }

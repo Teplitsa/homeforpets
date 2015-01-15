@@ -1,15 +1,15 @@
 <?php
 $this->breadcrumbs=array(
-	'Атрибуты товаров'=>array('attribute/index'),
+	'Характеристики животных'=>array('attribute/index'),
 	$attribute->title,
 );
 ?>
 
-<h1>Значения атрибута &laquo;<?php echo $attribute->title;?>&raquo;</h1>
+<h1>Значения характеристики &laquo;<?php echo $attribute->title;?>&raquo;</h1>
 
 <?php 
 echo CHtml::link('+ Добавить значение', array('attributeValue/create', 'id_attribute'=>$attribute->id), array('class'=>'add_element'));
-$this->widget('application.extensions.admingrid.MyRGridView', array(
+$this->widget('ext.plusone.ExtGridView', array(
 	'id'=>'catalog-attribute-value-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
@@ -20,7 +20,7 @@ $this->widget('application.extensions.admingrid.MyRGridView', array(
 		),
 		'value',
 		array(
-			'class'=>'MyRButtonColumn',
+			'class'=>'ExtButtonColumn',
 			'template' => '{update}{delete}',
 		),
         array(

@@ -389,7 +389,7 @@ class CatalogCategory extends CActiveRecord
 	 */
 	public function getCustomImage()
 	{
-		return $this->getCustomName() . ".svg";
+		return $this->getCustomName() . ".png";
 	}
 	
 	/**

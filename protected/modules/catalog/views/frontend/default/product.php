@@ -1,42 +1,59 @@
 <?php
 $cs=Yii::app()->clientScript;
-$cs->registerScriptFile('/js/jquery.fancybox-1.3.4.js', CClientScript::POS_HEAD);
-//$cs->registerScriptFile('/js/jquery.mousewheel-3.0.4.pack.js', CClientScript::POS_HEAD);
-$cs->registerCssFile('/css/jquery.fancybox-1.3.4.css');
+$cs->registerScriptFile('/js/jquery.fancybox.js', CClientScript::POS_HEAD);
+$cs->registerCssFile('/css/fancybox/jquery.fancybox.css');
 
 Yii::app()->clientScript->registerScript('images', "
-	$('.previews a').click(function(){
-
-	    var Medium = $(this).attr('href');
-	    var path=$(this).children('img').attr('src');
-		parts = path.split( '/' );
-		var Input = parts[parts.length-1];
-		var big='';
-		for(i=1; i<=parts.length-3; i++){
-		    big=big+'/'+parts[i];
-		}
-		big=big+'/'+Input;
-
-		$('a#bigPhoto').attr({ href: big});
-		$('a#bigPhoto').find('img').attr({ src: Medium});
-		return false;
-	});
-
   $('a[rel=example_group]').fancybox({
-		overlayShow: true,
-		overlayOpacity: 0.5,
-		zoomSpeedIn: 300,
-		zoomSpeedOut:300
+		openEffect  : 'none',
+		closeEffect	: 'none',
+		helpers : {
+			overlay : {
+				locked : false
+			}
+		}
 	});
 ", CClientScript::POS_READY);
-
+Yii::app()->clientScript->registerScript('catalog-products-fav', "
+	
+	$(document).on('click', '.add-favorite',function(){
+		var link = $(this);
+		var op = 'add';
+		if ($(link).hasClass('added'))
+			op = 'remove';
+			
+		$.ajax({
+			type: 'POST',
+			url: '/catalog/favorite/'+op+'/id/'+link.data('id'),
+			success: function(data){
+				if (data != '0')
+					$('header .s-btn.favorite').css('display' , 'inline-block');
+				else
+					$('header .s-btn.favorite').hide();
+					
+				if (op == 'add')
+					$(link).addClass('added').html('<img src=\"/images/favorite.png\" alt=\"\">Удалить из избранного');
+				else
+					$(link).removeClass('added').html('<img src=\"/images/favorite.png\" alt=\"\">Добавить в избранное');
+			},
+			error: function(){},
+		});
+		return false;
+	});
+	
+",CClientScript::POS_READY);
 ?>
 <div class="catalog-category">
 	<div class="product-view">
 		<h1><span><?php echo $model->title; ?></span></h1>
 		<div class="left">
 			<div class="image">
-				<?php echo CHtml::link(CHtml::image('/upload/catalog/product/medium/' . $model->photo, $model->title) , array('/upload/catalog/product/' . $model->photo), array('rel'=>'example_group')); ?>
+				<?php
+					if ($model->photo)
+						echo CHtml::link(CHtml::image('/upload/catalog/product/medium/' . $model->photo, $model->title) , array('/upload/catalog/product/' . $model->photo), array('rel'=>'example_group')); 
+					else
+						echo CHtml::image('/images/nophoto.jpg', $model->title);
+				?>
 			</div>
 			<?php if (isset($model->catalogImages)): $k = 0;?>
 				<div class="previews">
@@ -71,7 +88,7 @@ Yii::app()->clientScript->registerScript('images', "
 			<?php if ($model->owner_phone): ?>
 				<div class="phone"><?php echo $model->owner_phone;?></div>
 			<?php endif; ?>
-			<?php if ($attrs = $model->outAttrs()): $k = 0;?>
+			<?/*php if ($attrs = $model->outAttrs()): $k = 0;?>
 			<table>
 				<tr>
 				<?php foreach($attrs as $attr): ?>
@@ -94,9 +111,10 @@ Yii::app()->clientScript->registerScript('images', "
 				<?php endforeach?>
 				</tr>
 			</table>
-			<?php endif; ?>   
-			<a href="/styles" class="s-btn">Добавить в избранное</a><br/>
-			<a href="/styles" class="s-btn">Перезвонить мне</a>
+			<?php endif; */?>   
+			<?php $favIds = (Yii::app()->session['favorite'] ? Yii::app()->session['favorite'] : array());?>
+			<a href="/styles" class="s-btn add-favorite<?php echo (in_array($model->id, $favIds) ? ' added' : ''); ?>" data-id="<?php echo $model->id;?>"><img src="/images/favorite.png" alt=""><?php echo (in_array($model->id, $favIds) ? 'Убрать из избранного' : 'Добавить в избранное'); ?></a><br/>
+			<!--a href="/styles" class="s-btn">Перезвонить мне</a-->
 		</div>
 		<div class="clear"></div>
 		<div class="info">

@@ -12,11 +12,6 @@ class AttributeController extends BackEndController
 	{
 		return array(
 			'move'=>'application.extensions.SSortable.SSortableAction',
-            'order' => array(
-                'class' => 'ext.RGridView.RGridViewAction',
-                'model' => 'CatalogAttribute',
-                'orderField' => 'sort_order',
-            ),
 		);
 	}
 	/**
@@ -44,14 +39,15 @@ class AttributeController extends BackEndController
 		if(isset($_POST['CatalogAttribute']))
 		{
 			$model->attributes=$_POST['CatalogAttribute'];
-            
-            // Разбираем выбранные категории
-            if(isset($_POST['UseCategory'])){
-                $model->use_category=$this->getUseCategories($_POST['UseCategory']);
-            }
-
 			if($model->save())
+			{
+				if (isset($_POST['UseCategory']) and $catIds = $_POST['UseCategory'])
+				{
+					foreach ($catIds as $catId)
+						Yii::app()->db->createCommand()->insert('catalog_category_attribute', array('id_category' => $catId, 'id_attribute' => $model->id));
+				}
 				$this->redirect(array('index'));
+			}
 		}
 
 		$this->render('create',array(
@@ -75,12 +71,16 @@ class AttributeController extends BackEndController
 		if(isset($_POST['CatalogAttribute']))
 		{
 			$model->attributes=$_POST['CatalogAttribute'];
-
-            // Разбираем выбранные категории
-            $model->use_category=$this->getUseCategories($_POST['UseCategory']);
-
 			if($model->save())
+			{
+				if (isset($_POST['UseCategory']) and $catIds = $_POST['UseCategory'])
+				{
+					Yii::app()->db->createCommand()->delete('catalog_category_attribute', 'id_attribute=:id_attribute', array(':id_attribute'=>$model->id));
+					foreach ($catIds as $catId)
+						Yii::app()->db->createCommand()->insert('catalog_category_attribute', array('id_category' => $catId, 'id_attribute' => $model->id));
+				}
 				$this->redirect(array('index'));
+			}
 		}
 
 		$this->render('update',array(
