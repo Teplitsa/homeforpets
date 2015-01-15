@@ -33,9 +33,9 @@
 						<?php else: ?>
 							<?php 
 								$backUrl = "/";
-								if ($this->module->id == 'catalog')
+								if (isset($this->module) and $this->module->id == 'catalog')
 									$backUrl .= 'catalog';
-								if ($this->action->id == 'product')
+								if (isset($this->action) and $this->action->id == 'product')
 								{
 									$uriParts = explode("/", Yii::app()->request->requestUri);
 									if (array_key_exists(2, $uriParts))
