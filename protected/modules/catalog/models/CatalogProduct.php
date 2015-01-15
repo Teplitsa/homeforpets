@@ -1027,7 +1027,7 @@ class CatalogProduct extends CActiveRecord
 		while ($attach > 20)
 			$attach = substr($attach, -(strlen($attach) - 1));
 		
-		if ($attach > 1)
+		if ($attach != 1)
 			$result = 'питомцам';
 			
 		return $result;	
