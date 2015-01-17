@@ -7,6 +7,7 @@ class DefaultController extends BaseCatalogController
 
 	public function actionIndex()
 	{   
+		$this->redirect('/');
         $this->metaInfoGenerate($this->catalog_config->title, $this->catalog_config->keywords, $this->catalog_config->description);
 		$this->render('index');
 	}
@@ -76,40 +77,16 @@ class DefaultController extends BaseCatalogController
         } else throw new CHttpException(404,'The requested page does not exist.');
 	}
 
-    public function actionSelection($sort=''){
-        $this->breadcrumbs[]='Результаты подбора товаров';
-
-        // Берем параметры для отбора из get-запроса
-		$category=array();
-        $selectionParameters=array();
-        if(isset($_GET['selectionParameters'])){
-           $selectionParameters=$_GET['selectionParameters'];
-		   if((isset($_GET['selectionParameters']['category']))&&($_GET['selectionParameters']['category']>0)) {
-				
-				$category=CatalogCategory::model()->findByPk($_GET['selectionParameters']['category']);
-		   }
-        }
+    public function actionSelection()
+	{
+        $params = array();
+        if (isset($_GET['params']))
+           $params = $_GET['params'];
         
-        // Отбираем товары по заданным критериям
-        $this->productsToShow=CatalogProduct::selectionProducts($selectionParameters,$sort);
-		
-        $dataProvider= new CArrayDataProvider($this->productsToShow, array(
-            'pagination'=>array(
-                'pageSize'=>$this->catalog_config->product_perpage,
-                ),
-        ));
-
-        // если указан шаблон - берем его
-        if($this->catalog_config->layout) $this->layout=$this->catalog_config->layout;
-        
+        $dataProvider = CatalogProduct::selectionProvider($params);
         $this->render('selectionresults', array(
-				'dataProvider'=>$dataProvider,
-				'category'=>$category,
-				'selectionParameters'=>$selectionParameters,
-				//'title_sort'=>$title_sort,
-				//'title_link_class'=>$title_link_class,
-				//'price_sort'=>$price_sort,
-				//'price_link_class'=>$price_link_class,
+			'dataProvider' => $dataProvider,
+			'params' => $params,
         ));
     }
 

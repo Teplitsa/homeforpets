@@ -838,7 +838,57 @@ class CatalogProduct extends CActiveRecord
 
     }
 
-    public static function selectionProducts($selectionParameters=array(),$sort=''){
+    public static function selectionProvider($params = array())
+	{
+		$criteria = new CDbCriteria;
+		$criteria->order = 'sort_order ASC';
+		$criteria->addCondition('hide = 0 OR hide is NULL');
+		$criteria->addCondition('attach = 0');
+		if (!empty($params))
+		{
+			if (isset($params['sex']) and $params['sex'])
+				$criteria->compare('sex', $params['sex']);
+				
+			if (isset($params['city']) and $params['city'])
+				$criteria->compare('city', $params['city']);
+				
+			if (isset($params['ageFrom']) and $params['ageFrom'] and isset($params['ageFromUnit']) and $params['ageFromUnit'])
+			{
+				$from = (int)$params['ageFrom'] * (int)$params['ageFromUnit'];
+				$criteria->addCondition('(age_y * 365 + age_m * 30 + age_w * 7) >= '.$from);
+			}
+			
+			if (isset($params['ageTo']) and $params['ageTo'] and isset($params['ageToUnit']) and $params['ageToUnit'])
+			{
+				$to = (int)$params['ageTo'] * (int)$params['ageToUnit'];
+				$criteria->addCondition('(age_y * 365 + age_m * 30 + age_w * 7) <= '.$to);
+			}
+			
+			if (isset($params['category']) and $params['category'])
+			{
+				$criteria->compare('id_category', $params['category']);
+				if ($params['category'] == 1 and isset($params['color']) and $params['color'])
+					$criteria->compare('color', $params['color']);
+					
+				if ($params['category'] == 2 and isset($params['size']) and $params['size'])
+					$criteria->compare('size', $params['size']);
+			}
+			
+			if (isset($params['medical']) and $params['medical'])
+				$criteria->compare('medical', $params['medical']);
+		}
+		
+		$dataProvider = new CActiveDataProvider('CatalogProduct', array(
+			'criteria' => $criteria,
+			'pagination' => false,
+		));
+		
+		return $dataProvider;
+	}
+	
+    public static function selectionProducts($selectionParameters=array())
+	{
+		
         // если переданы параметры для отбора
         if(!empty($selectionParameters)){
 
@@ -872,45 +922,6 @@ class CatalogProduct extends CActiveRecord
             
             // Выбираем все товары, удовлетворяющие критериям
             $allprod=CatalogProduct::model()->findAll($criteria);
-
-            // Отбираем товары, удовлетворяющие параметрам поиска
-            $selectedProd=array();
-            foreach($allprod as $product)
-			{
-                // Признак, берем ли данный продукт в выборку
-                $addthis = true;
-                // Проверяем по диапазону цены
-                if(isset($selectionParameters['attributes']))
-				{
-                    foreach($selectionParameters['attributes'] as $attr_key => $attr_values)
-					{
-                        
-						// Берем значения данного атрибута у товара
-                        $product_attr_values = $product->getProductAttributeValue($attr_key, true);
-
-                        // Если переданы минимальное и максимальное значения
-                        if (isset($attr_values['min']) && isset($attr_values['max']))
-						{
-							if ($product_attr_values)
-							{
-								$values = (array)$product_attr_values;
-								foreach($values as $val)
-								{
-									$addthis = ($addthis && $val>=$attr_values['min'] && $val<=$attr_values['max']);
-								}
-							}
-                        }
-						else
-						{
-                            // Если значения атрибута товара пересекаются с массивом требуемых значений
-                            $addthis=($addthis && array_intersect((array)$product_attr_values, $attr_values));
-                        }
-
-                    }
-                }
-               
-                if($addthis) $selectedProd[]=$product;
-            }
 
         } else {
             // Если параметры не переданы - берем все

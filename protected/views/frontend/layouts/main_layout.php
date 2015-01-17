@@ -33,13 +33,11 @@
 						<?php else: ?>
 							<?php 
 								$backUrl = "/";
-								if (isset($this->module) and $this->module->id == 'catalog' and isset($this->action) and $this->action->id != 'index')
-									$backUrl .= 'catalog';
-								if (isset($this->action) and $this->action->id == 'product')
+								if (isset($this->module) and $this->module->id == 'catalog' and isset($this->action) and $this->action->id == 'product')
 								{
 									$uriParts = explode("/", Yii::app()->request->requestUri);
 									if (array_key_exists(2, $uriParts))
-										$backUrl .= '/' . $uriParts[2];
+										$backUrl .= 'catalog/' . $uriParts[2];
 								}
 							?>
 							<a href="<?php echo $backUrl;?>" class="s-btn back"><img src="/images/back.png" alt=""/>Вернуться</a>

@@ -53,7 +53,7 @@ class ResponseForm extends CFormModel
             'terms1' => 'Условия проживания',
             'terms2' => 'Условия проживания',
             'description' => 'История животного',
-            'id_category' => 'Тип животного',
+            'id_category' => 'Вид животного',
             'color' => 'Цвет(Окрас)',
             'size' => 'Размер',
 		);

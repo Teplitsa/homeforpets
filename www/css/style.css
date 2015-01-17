@@ -67,6 +67,8 @@ header .bot .bot-r a img { max-width: 100%; max-height: 100%; }
 .tcl { display: table-cell; text-align: left; }
 .tcr { display: table-cell; text-align: right; }
 .fl { float: left; }
+.wsnw { white-space: nowrap; }
+.did { display: inline-block; }
 
 footer { width: 100%; height: 126px; margin-top: -151px; padding-top: 25px; background: #f1e7d7 url('/images/tex.png') center; position: relative; overflow: hidden; }
 footer .bot { display: table; }
@@ -180,22 +182,34 @@ footer .dev img { max-width: 161px; width: 100%; vertical-align: middle; }
 
 /* Форма сайта */
 .s-form { border: 1px solid #cd5927; border-radius: 1.3em; background: #f47543; background: -moz-linear-gradient(top, #f7a07d 0%, #f47543 100%); background: -webkit-linear-gradient(top, #f7a07d 0%, #f47543 100%); background: -o-linear-gradient(top, #f7a07d 0%, #f47543 100%); background: -ms-linear-gradient(top, #f7a07d 0%, #f47543 100%); background: linear-gradient(top, #f7a07d 0%, #f47543 100%); box-shadow: 0 1px 0 rgba(255, 255, 255, .44) inset, 0 1px 1px rgba(0, 0, 0, .19); padding: 15px 0; margin-top: 20px; font-family: 'AFuturaRoundDemi'; color: #ffffff; }
-.s-form .row { display: table; width: 100%; vertical-align: top; margin: 10px 0; }
+.s-form .row { display: table; width: 100%; vertical-align: top; margin-bottom: 10px; }
 .s-form .row.wp { padding: 0 2.85%; width: 94.3%; }
-.s-form .row .column { display: table-cell; padding: 0 2.85%; width: 44.3%; vertical-align: top; }
+.s-form .row .column { display: table-cell; padding: 0 2.85%; width: 44.3%; vertical-align: top; position: relative; }
+.s-form .row .column.mh { min-height: 55px; }
+.s-form .row .column .column-left, .s-form .row .column .column-right { display: table; width: 48%; vertical-align: top; position: relative; }
+.s-form .row .column .column-right { left: 52%;}
 .s-form .row .column .inline { text-align: center; position: relative; }
 .s-form .row.buttons { text-align: center; }
 .s-form .row.buttons input[type=submit] { display: inline-block; text-decoration: none; text-transform: uppercase; font-family: 'AFuturaRoundDemi'; color: #ffffff; font-size: 1.3em; padding: 0 3%; line-height: 2.6168em; border: none; border-radius: 1.3em; background: #f16022; background: -moz-linear-gradient(top, #f8a846 0%, #f7941e 100%); background: -webkit-linear-gradient(top, #f8a846 0%, #f7941e 100%); background: -o-linear-gradient(top, #f8a846 0%, #f7941e 100%); background: -ms-linear-gradient(top, #f8a846 0%, #f7941e 100%); background: linear-gradient(top, #f8a846 0%, #f7941e 100%); box-shadow: 0 2px 2px rgba(248, 158, 93, 1) inset, 0 -2px 2px rgba(240, 79, 46, 1) inset, 0 1px 1px rgba(210, 101, 58, 1);  word-wrap: normal; margin-right: -4px; text-shadow: 0 -1px 0 rgba(0, 0, 0, .2); outline: none; cursor: pointer;}
+.s-form .row h1 { color: #ffffff; margin-top: 5px; background: none; }
 .s-form .row label { color: #ffffff; }
 .s-form .row label .required { color: #c90000; }
-.s-form .row input[type=text] { border: 1px solid #e87948; background: #f9eee9; width: 94%; height: 27px; box-shadow: 0 1px 3px rgba(0, 0, 0, .31); border-radius: 0.8em; padding: 0 3%; outline: none; font-family: 'AFuturaRoundDemi'; font-size: 0.9375em; }
+.s-form .row input[type=text] { border: 1px solid #e87948; background: #f9eee9; width: 94%; height: 29px; box-shadow: 0 1px 3px rgba(0, 0, 0, .31); border-radius: 0.8em; padding: 0 3%; outline: none; font-family: 'AFuturaRoundDemi'; font-size: 0.9375em; }
 .s-form .row input[type=text].sh { width: 25%; display: inline-block; }
 .s-form .row input[type=text].sh:first-child { position: absolute; left: 0; }
 .s-form .row input[type=text].sh:last-child { position: absolute; right: 0;  }
 .s-form .row select { border: 1px solid #e87948; background: #f9eee9; width: 100%; height: 31px; box-shadow: 0 1px 3px rgba(0, 0, 0, .31); border-radius: 0.8em; padding: 0 2%; outline: none; font-family: 'AFuturaRoundDemi'; font-size: 0.9375em; }
 .s-form .row textarea { border: 1px solid #e87948; background: #f9eee9; width: 96%; box-shadow: 0 1px 3px rgba(0, 0, 0, .31); border-radius: 0.8em; padding: 2%; outline: none; resize: none; font-family: 'AFuturaRoundDemi'; font-size: 0.9375em; overflow: hidden; }
+.s-form .row input[type=checkbox] { cursor: pointer; border: none; appearance: none; -moz-appearance: none; -webkit-appearance: none; background: #f9eee9; margin: 0; width: 18px; height: 18px; outline: none; border: 1px solid #e87948; border-radius: 2px; position: relative; display: inline-block; vertical-align: middle; }
+.s-form .row input[type=checkbox] + label { cursor: pointer; display: inline-block; vertical-align: middle; margin-right: 15px;}
+.s-form .row input[type=checkbox]:checked:before { position: absolute; width: 18px; height: 18px; left: 3px; top: 1px; content: ""; background: url('/images/check.png') no-repeat left top; }
+.s-form .row input[type=checkbox]:checked + label { color: #1e1e1e; }
+.s-form .row input[type=checkbox]:disabled, .s-form .row input[type=checkbox]:disabled + label { opacity: 0.5; }
 .s-form .row label.error { color: #c90000; }
 .s-form .row input.error, .s-form .row select.error { background: #f16d54; color: #c90000; }
+
+.s-form .row .column .column-left input, .s-form .row .column .column-right input { padding: 0 6%; width: 12%; position: absolute; left: 0; }
+.s-form .row .column .column-left select, .s-form .row .column .column-right select { padding: 0 6%; width: 70%; position: absolute; right: 0; }
 /* Форма сайта END */
 
 .errorSummary { color: #cb0000; border: 2px solid #f16d54; text-align: center; border-radius: 1.3em; margin: 0 2.85% 10px 2.85%; }
@@ -255,7 +269,8 @@ footer .dev img { max-width: 161px; width: 100%; vertical-align: middle; }
 	.catalog-category .product-view .right .s-btn.add-favorite { padding-left: 10%; }
 	.catalog-category .product-view .right .s-btn.add-favorite img { top: 6px; }
 	
-	.s-form .row .column { display: table; padding: 0 2.85%; width: 94.3%; vertical-align: top; }
+	.s-form .row { margin: 0; }
+	.s-form .row .column { display: table; padding: 0 2.85%; width: 94.3%; vertical-align: top; margin-bottom: 10px; }
 }
 
 @media screen and (max-width: 480px)

@@ -55,18 +55,9 @@ Yii::app()->clientScript->registerScript('catalog-products', "
 <div class="catalog-category">
 	<h1 class="<?php echo $category->getCustomName();?>"><span><?php echo $category->title;?></span></h1>
 	<?php
-		/*$selectionParameters=array();
-		// Если переданы параметры - берем их
-		if(isset($_GET['selectionParameters'])){
-			$selectionParameters=$_GET['selectionParameters'];
-		} else {
-			$selectionParameters['category']=$category->id;
-		}
-		$this->widget('application.modules.catalog.components.SearchboxWidget', array('selectionParameters'=>$selectionParameters));*/
+		$params['category'] = $category->id;
+		$this->widget('application.modules.catalog.components.SearchboxWidget', array('params' => $params));
 	?>
-	<?/*div class="search-form">
-		Формочка
-	</div*/?>
 	<div class="products">
 		<?php $this->widget('zii.widgets.CListView', array(
 			'id' => 'product-list',

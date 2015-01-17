@@ -5,7 +5,7 @@
 	<b>Телефон куратора:</b> <?php echo $product->curator_phone; ?>
 	<br/>
 	<br/>
-	<b>Тип животного:</b> <?php echo $product->getCategoryTitle(); ?>
+	<b>Вид животного:</b> <?php echo $product->getCategoryTitle(); ?>
 	<br/>
 	<b>Кличка:</b> <?php echo $product->title; ?>
 	<br/>

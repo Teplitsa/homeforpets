@@ -1,106 +1,89 @@
-<?Yii::app()->clientScript->registerScript('searchbox', "
-    {$sliders_js_functions}
-	
-	$('.clear-searchbox').click(function(){
-	
-	
-	   $( '.slider-range-price' ).slider({
-			range: true,
-			min: ".number_format($priceRange['min'], 0, '', '').",
-			max: ".number_format($priceRange['max']+1, 0, '', '').",
-			values: [ ".number_format($priceRange['min'], 0, '', '').", ".number_format($priceRange['max']+1, 0, '', '')." ],
-			slide: function( event, ui ) {
-				$( '#amount' ).val(ui.values[ 0 ]);
-				$( '#amount2' ).val(ui.values[ 1 ]);
-			}
-	  });
-	  $( '#amount' ).val( $( '.slider-range' ).slider( 'values', 0 ) );
-	  $( '#amount2' ).val( $( '.slider-range' ).slider( 'values', 1 ) );
-	
-	
-	
-	 
-	   $('.empty').val(0);
-	  $('#fast-find-form').submit();
-	 
-	});
-	
-	$(document).on('click', '.toggler', function(){
-		if ($(this).hasClass('collapsable'))
-			$(this).addClass('expandable').removeClass('collapsable');
-		else
-			$(this).addClass('collapsable').removeClass('expandable');
+<?php
+Yii::app()->clientScript->registerScript('search-pets',"
+
+	$(document).on('change', 'select.form-group', function() {
+		var group = $(this).val();
+		if (!group)
+			group = 0;
 			
-		$(this).next().toggle();
-		return false;
+		$('div.group-block[data-form-group]').hide();
+		$('div.group-block[data-form-group ~= '+group+']').show();
 	});
 	
+	$(document).on('click', '.check-all', function(){
+		var name = $(this).data('param');
+		$('input[id ^= params_'+name+']').prop('disabled', $(this).prop('checked'));
+	});
+ 
 ", CClientScript::POS_READY);
 ?>
-<?php $fastfindform=$this->beginWidget('CActiveForm', array(
-	'id'=>'fast-find-form',
-    'enableAjaxValidation'=>false,
-    'action'=>'/catalog/default/selection/',
-    'method'=>'get',
+<?php $form = $this->beginWidget('CActiveForm', array(
+	'id' => 'seacrh-form',
+    'action' => '/catalog/default/selection',
+    'method' => 'get',
 )); ?>
-<div class="searchbox">
-	<div class="searchboxinner">
-		<input type="hidden" name="selectionParameters[category]" value="<?=$selectionParameters['category']?>"/>
-		<div class="row">
-			<div class="price">
-				<div class="title">Цена:</div>
-				<div class="info">
-					<label for="price-amount">от</label>
-					<input id="price-amount" type="text" class="inpprice"  name="selectionParameters[pricefrom]" value="<?=number_format($priceRange['min']-1, 0, '', '')?>" /> 
-					<label for="price-amount2">до</label>                   
-											<input id="price-amount2" type="text" class="inpprice" name="selectionParameters[priceto]" value="<?=number_format($priceRange['max']+1, 0, '', '')?>"  />
-					<div class="slider-range-price"></div>
-				</div>
-			</div>
-			<div class="brand">
-				Производитель:
-				<?php echo CHtml::dropDownList('selectionParameters[brand][]', $selectionParameters['brand'], $brand_list, array('empty'=>'Все производители')); ?>
-			</div>
+<div class="s-form">
+	<div class="row">
+		<h1>Подобрать животное</h1>
+	</div>
+	<div class="row">
+		<div class="column">
+			<?php echo CHtml::label('Вид животного', 'params[category]'); ?>:
+			<?php echo CHtml::dropDownList('params[category]', $params['category'], CHtml::listData(CatalogCategory::model()->findAll('parent_id = 0'), 'id', 'title'), array('empty' => 'Любое животное', 'class' => 'form-group')); ?>
 		</div>
-		<div class="additional">
-			<div class="toggler expandable"><a href="#">Дополнительные параметры</a></div>
-			<div style="display: none;">
-				<?php foreach($attributes as $attribite):?>
-				<div class="row">
-					<div class="title"><?php echo $attribite->title;?>:</div>
-					<div class="info">
-						<?php if($attribite->id_attribute_kind==3 || $attribite->id_attribute_kind==4):?>
-                        <?php 
-							$values = ($attribite->alphasort ? $attribite->values_sorted : $attribite->values);
-                            foreach($values as $value)
-							{
-								if(isset($allExistedParametersCategory[$attribite->id]) && in_array($value->id, $allExistedParametersCategory[$attribite->id]))
-								{
-									echo CHtml::checkBox('selectionParameters[attributes]['.$attribite->name.'][]', in_array($value->id, $selectionParameters['attributes'][$attribite->name]), array('id'=>$attribite->name.$value->id, 'value'=>$value->id));
-									echo CHtml::label($value->value, $attribite->name.$value->id, array('class' => 'for-checkbox'));      
-									echo "<br/>";
-								}
-                            }
-						?>
-                        <?elseif($attribite->id_attribute_kind==1):?>
-							<label for="<?=$attribite->name;?>-amount">от</label>
-							<input id="<?=$attribite->name;?>-amount" type="text" class="inptext" name="selectionParameters[attributes][<?=$attribite->name;?>][min]" value="<?=$selectionParameters['attributes'][$attribite->name]['min'];?>" />
-							<label for="<?=$attribite->name;?>-amount2">до</label>
-							<input id="<?=$attribite->name;?>-amount2" type="text" class="inptext" name="selectionParameters[attributes][<?=$attribite->name;?>][max]" value="<?=$selectionParameters['attributes'][$attribite->name]['max'];?>"  />
-                            <div id="slider-range-<?=$attribite->name;?>" class="slider-attr"></div>
-						<?endif?>
-						<div class="clear"></div>
-                    </div>
-				</div>
-                <?php endforeach?>
+		<div class="column mh">
+			<?php echo CHtml::label('Возраст', 'params[ageFrom]'); ?>:
+			<div class="column-left">
+				<?php echo CHtml::textField('params[ageFrom]', $params['ageFrom'], array('maxlength' => 256, 'placeholder' => 'от')); ?>
+				<?php echo CHtml::dropDownList('params[ageFromUnit]', $params['ageFromUnit'], array(7 => 'Недель', 30 => 'Месяцев', 365 => 'Лет')); ?>
+			</div>
+			<div class="column-right">
+				<?php echo CHtml::textField('params[ageTo]', $params['ageTo'], array('maxlength' => 256, 'placeholder' => 'до')); ?>
+				<?php echo CHtml::dropDownList('params[ageToUnit]', $params['ageToUnit'], array(7 => 'Недель', 30 => 'Месяцев', 365 => 'Лет')); ?>
 			</div>
 		</div>
-							
-							
-		<div class="buttons">
-			<input class="send" type="submit" value=""/>	
-			<?php echo CHtml::link('Сбросить', '#', array('class' => 'clear-searchbox')); ?>
+	</div>
+	
+	<div class="row">
+		<div class="column">
+			<?php echo CHtml::label('Пол', 'params[sex]'); ?>:<br/>
+			<?php echo CHtml::dropDownList('params[sex]', $params['sex'], array(1 => 'Самка', 2 => 'Самец'), array('empty' => 'Все')); ?>
 		</div>
+		<div class="column">
+			<?php echo CHtml::label('Город', 'params[city]'); ?>:<br/>
+			<?php echo CHtml::dropDownList('params[city]', $params['city'], array('Пенза' => 'Пенза', 'Заречный' => 'Заречный'), array('empty' => 'Все')); ?>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="column">
+			<div class="group-block" data-form-group="1" style="display:<?php echo ($params['category'] == 1 ? 'block' : 'none');?>">
+				<?php echo CHtml::label('Цвет(Окрас)', 'params[color]'); ?>:<br/>
+				<?php echo CHtml::checkBoxList('params[color][]', $params['color'], $colorList, array('separator' => '', 'template' => '<span class="did">{input} {label}</span>')); ?>
+				<span class="did">	
+					<?php echo CHtml::checkBox('check-all-color', 0, array('class' => 'check-all', 'data-param' => 'color')); ?>
+					<?php echo CHtml::label('Все', 'check-all-color'); ?>
+				</span>
+			</div>
+			<div class="group-block" data-form-group="2" style="display:<?php echo ($params['category'] == 2 ? 'block' : 'none');?>">
+				<?php echo CHtml::label('Размер', 'params[size]'); ?>:<br/>
+				<?php echo CHtml::checkBoxList('params[size][]', $params['size'], $sizeList, array('separator' => '', 'template' => '<span class="did">{input} {label}</span>')); ?>
+				<span class="did">
+					<?php echo CHtml::checkBox('check-all-size', 0, array('class' => 'check-all', 'data-param' => 'size')); ?>
+					<?php echo CHtml::label('Все', 'check-all-size'); ?>
+				</span>
+			</div>
+		</div>
+		<div class="column">
+			<div class="group-block" data-form-group="1 2" style="display:<?php echo ($params['category'] == 1 ? 'block' : 'none');?>">
+				<?php echo CHtml::label('Стерилизация и прививки', 'params[medical]'); ?>:<br/>
+				<?php echo CHtml::checkBoxList('params[medical][]', $params['medical'], array(1 => 'Привит', 2 => 'Стерилизован', 3 => 'Привит и стерилизован'), array('separator' => '', 'template' => '<span class="did">{input} {label}</span>')); ?>
+			</div>
+		</div>
+	</div>
+	
+	<div class="row buttons">
+		<?php echo CHtml::submitButton('Подобрать'); ?>
 	</div>
 </div>
 <?php $this->endWidget(); ?>
