@@ -19,6 +19,7 @@ class DefaultController extends BaseCatalogController
 		$criteria = new CDbCriteria;
 		$criteria->compare('id_category', $category->id);
 		$criteria->addCondition('hide=0 OR hide is NULL');
+		$criteria->addCondition('attach=0');
 		$criteria->order = 'sort_order ASC';
 		$criteria->limit = 6;
 		$criteria->offset = $offset;

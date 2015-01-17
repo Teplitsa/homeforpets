@@ -134,6 +134,7 @@ class DefaultController extends BackEndController
         $products->unsetAttributes();
 
         $products->id_category=$category->id;
+        $products->attach = 0;
 
 		if(isset($_GET['CatalogProduct']))
 			$products->attributes=$_GET['CatalogProduct'];

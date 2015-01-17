@@ -67,7 +67,8 @@ class CatalogCategory extends CActiveRecord
 	public function relations()
 	{
 		return array(
-			'products' => array(self::HAS_MANY, 'CatalogProduct', 'id_category'),
+			'products' => array(self::HAS_MANY, 'CatalogProduct', 'id_category', 'condition' => 'attach = 0'),
+			'productsAttached' => array(self::HAS_MANY, 'CatalogProduct', 'id_category', 'condition' => 'attach = 1'),
 			'catalogProductsForExist' => array(self::HAS_MANY, 'CatalogProduct', 'id_category','select'=>'price,brand','condition'=>'hide=0 OR hide is NULL','with'=>'productAttrubute'),
 			'parent' => array(self::BELONGS_TO, 'CatalogCategory', 'parent_id'),
 			'parentShort' => array(self::HAS_ONE, 'CatalogCategory', 'parent_id','select'=>'parentShort.link,parentShort.parent_id',),

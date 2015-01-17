@@ -65,7 +65,7 @@ $disabled = ($model->enabled ? '' : 'disabled');
 
 			<div class="row">
 				<?php echo $form->labelEx($model, 'password'); ?>
-				<?php echo $form->textField($model, 'password', array('disabled' => $disabled)); ?>
+				<?php echo $form->passwordField($model, 'password', array('disabled' => $disabled)); ?>
 				<?php echo $form->error($model, 'password'); ?>
 			</div>
 

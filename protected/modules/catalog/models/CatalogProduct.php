@@ -209,6 +209,7 @@ class CatalogProduct extends CActiveRecord
 		$criteria->compare('id_category',$this->id_category);
         if($this->on_main) $criteria->compare('on_main',$this->on_main);
 		$criteria->compare('date_added',$this->date_added);
+		$criteria->compare('attach',$this->attach);
 
 		/*$criteria->with=array('idCategory');
 		$criteria->compare('idCategory.sort_order',$this->id_category,true);*/
@@ -529,14 +530,6 @@ class CatalogProduct extends CActiveRecord
 						->save($this->folder . '/moreimages/medium/' .$productImagesName, false, 100);
 				}
 			}
-
-			// Пристроили
-			if ($this->attach and $this->id_category < 4)
-				$this->id_category += 3;
-				
-			// Обратно вернули
-			if (!$this->attach and $this->id_category > 3)
-				$this->id_category -= 3;
 				
 			return true;
 		}
@@ -1050,7 +1043,7 @@ class CatalogProduct extends CActiveRecord
 		$result = 'Другие животные';
 		if ($this->id_category == 1)
 			$result = 'Кошки';
-		elseif ($this->sex == 2)
+		elseif ($this->id_category == 2)
 			$result = 'Собаки';
 
 		return $result;

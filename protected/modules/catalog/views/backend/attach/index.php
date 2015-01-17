@@ -86,16 +86,7 @@ $('.delete').click(function(){
 			array(
 				'header' => 'Животные',
 				'type' => 'raw',
-				'value' => '($data->products) ? 
-					CHtml::link("Список(" . count($data->products) . ")", array("index", "id" => $data->id),array("class"=>"category")) :
-					CHtml::link("Добавить", array("product/create", "id_category" => $data->id))',
-			),
-			array(
-				'class' => 'ExtButtonColumn', 
-				'template' => '{update}',
-			),
-			array(
-				'class' => 'ext.SSortable.SSortableColumn',
+				'value' => 'CHtml::link("Список(" . count($data->productsAttached) . ")", array("index", "id" => $data->id),array("class"=>"category"))',
 			),
 		),
 	)); 
@@ -105,7 +96,6 @@ $('.delete').click(function(){
 <?php else: ?>
 <h2>Список животных</h2>
 <?php
-echo CHtml::link('+ Добавить животное', array('product/create', 'id_category'=>$category->id), array('class'=>'add_element'));
 $this->widget('ext.plusone.ExtGridView', array(
 	'id'=>'products-grid',
 	'dataProvider'=>$products->search(),
@@ -126,11 +116,6 @@ $this->widget('ext.plusone.ExtGridView', array(
 			'name'=>'title',
 			'type'=>'raw',
 			'value'=>'CHtml::link(CHtml::encode($data->title), array("product/view", "id"=>$data->id))'
-		),
-		array(
-			'header'=>'Опубликовано',
-			'type'=>'raw',
-			'value'=>'CHtml::checkBox("yam",!$data->hide,array("class"=>"hider","data-id"=>$data->id))'
 		),
 		/* array(
 			'header'=>'ЯМаркет',
@@ -155,9 +140,6 @@ $this->widget('ext.plusone.ExtGridView', array(
 			),
 
 		),
-        array(
-            'class' => 'application.modules.catalog.components.SSortable.SSortableCatalogColumn',
-        ),
 	),
 )); 
 
