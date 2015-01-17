@@ -13,7 +13,7 @@
 	<?php echo CHtml::encode($data->name); ?>
     <div>
     <?php
-		$dataProvider = new CArrayDataProvider($data->blocks, array(
+		$dataProvider = new CArrayDataProvider($data->allblocks, array(
             'sort' => array(
                 'defaultOrder' => 'sort_order',
             ),

@@ -67,12 +67,18 @@ Yii::app()->clientScript->registerScript('catalog-products-fav', "
 			<div class="title"><?php echo $model->title;?></div>
 			<div class="age"><?php echo $model->getAgeDesc();?></div>
 			<div class="sex"><?php echo $model->getSexDesc();?></div>
+			<?php if ($model->color): ?>
+				<div class="color"><?php echo $model->color;?></div>
+			<?php endif; ?>
 			<div class="city">г. <?php echo $model->city;?></div>
 			<?php if ($medDesc = $model->getMedDesc()): ?>
 				<div class="med"><?php echo $medDesc;?></div>
 			<?php endif; ?> 
 			<?php if ($termDesc = $model->getTermsDesc()): ?>
 				<div class="terms"><?php echo $termDesc;?></div>
+			<?php endif; ?>
+			<?php if ($model->clear): ?>
+				<div class="bug">Обработан<?php echo ($model->sex == 1 ? 'а' : '');?> от паразитов</div>
 			<?php endif; ?>
 			<div class="track-line"></div>
 			<h3>Куратор и передержка</h3>

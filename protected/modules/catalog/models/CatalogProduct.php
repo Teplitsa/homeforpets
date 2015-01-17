@@ -73,9 +73,9 @@ class CatalogProduct extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, link','required'),
-			array('age_y, age_m, age_w, sex, medical, terms, attach', 'numerical', 'integerOnly'=>true),
-			array('photo, title, link, city, curator_name, curator_phone, owner_name, owner_phone', 'length', 'max'=>256),
+			array('title, link', 'required', 'except' => 'response'),
+			array('age_y, age_m, age_w, sex, medical, terms, attach, clear', 'numerical', 'integerOnly'=>true),
+			array('photo, title, link, city, curator_name, curator_phone, owner_name, owner_phone, size, color', 'length', 'max'=>256),
 			array('id_category', 'length', 'max' => 11),
             array('link', 'unique', 'message' => 'Животное со ссылкой {value} уже существует!'),
             array('link', 'match', 'pattern' => '/^[A-Za-z0-9\-]+$/u', 'message' => 'Поле {attribute} должно содержать только латинские буквы, цифры и знак "-"!'),
@@ -177,6 +177,9 @@ class CatalogProduct extends CActiveRecord
             'owner_name' => 'Имя приютивщего',
             'owner_phone' => 'Телефон приютивщего',
             'attach' => 'Пристроили?',
+            'color' => 'Цвет(Окрас)',
+            'size' => 'Размер',
+            'clear' => 'Обработан от паразитов?',
 		);
 	}
 
@@ -813,7 +816,7 @@ class CatalogProduct extends CActiveRecord
     public function getFullLink(){
             if(isset($this->idCategory)){
                          // возвращаем путь к категории товара и прибавляем в конце id
-                        return '/catalog'.CatalogCategory::getCategoryRoute($this->idCategory->link).$this->link.'.html';
+                        return '/catalog'.CatalogCategory::getCategoryRoute($this->idCategory->link)."/".$this->link.'.html';
             }  else {return '/catalog/'.$this->link.'.html';}
     }
 
@@ -1008,7 +1011,16 @@ class CatalogProduct extends CActiveRecord
 	
 	public function getMedDesc()
 	{
-		return (array_key_exists($this->medical, $this->medList) ? $this->medList[$this->medical] : null);
+		$medList = $this->medList;
+		if ($this->sex == 1)
+		{
+			$medList = array(
+				1 => 'Привита', 
+				2 => 'Стерилизована', 
+				3 => 'Привита и стерилизована',
+			);
+		}
+		return (array_key_exists($this->medical, $medList) ? $medList[$this->medical] : null);
 	}
 	
 	public function getTermsDesc()
@@ -1031,5 +1043,16 @@ class CatalogProduct extends CActiveRecord
 			$result = 'питомцам';
 			
 		return $result;	
+	}
+	
+	public function getCategoryTitle()
+	{
+		$result = 'Другие животные';
+		if ($this->id_category == 1)
+			$result = 'Кошки';
+		elseif ($this->sex == 2)
+			$result = 'Собаки';
+
+		return $result;
 	}
 }

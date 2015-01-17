@@ -52,6 +52,7 @@ class Area extends CActiveRecord
     {
         return array(
             'blocks' => array(self::HAS_MANY, 'AreaBlock', 'area_id', 'condition' => 'blocks.visible = 1', 'order' => 'blocks.sort_order'),
+            'allblocks' => array(self::HAS_MANY, 'AreaBlock', 'area_id', 'order' => 'allblocks.sort_order'),
         );
     }
 

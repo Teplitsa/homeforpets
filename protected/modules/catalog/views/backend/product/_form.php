@@ -132,6 +132,20 @@ $cs->registerScript('change_brand', "
 		<?php echo $form->error($model,'sex'); ?>
 	</div>
 	
+	<?php if ($model->id_category == 1) : ?>
+		<div class="row">
+			<?php echo $form->labelEx($model,'color'); ?>
+			<?php echo $form->textField($model, 'color'); ?>
+			<?php echo $form->error($model,'color'); ?>
+		</div>
+	<?php elseif ($model->id_category == 2): ?>
+		<div class="row">
+			<?php echo $form->labelEx($model,'size'); ?>
+			<?php echo $form->textField($model, 'size'); ?>
+			<?php echo $form->error($model,'size'); ?>
+		</div>
+	<?php endif; ?>
+	
 	<div class="row">
 		<?php echo $form->labelEx($model,'city'); ?>
 		<?php echo $form->dropDownList($model, 'city', array('Пенза' => 'Пенза', 'Заречный' => 'Заречный')); ?>
@@ -157,6 +171,12 @@ $cs->registerScript('change_brand', "
 			<?php echo $form->error($model,'terms'); ?>
 		</div>
 	<?php endif; ?>
+	
+    <div class="row">
+        <?php echo $form->labelEx($model,'clear'); ?>
+        <?php echo $form->checkBox($model,'clear'); ?>
+        <?php echo $form->error($model,'clear'); ?>
+    </div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'curator_name'); ?>
@@ -267,10 +287,6 @@ $cs->registerScript('change_brand', "
 		)); ?>
 		<?php echo $form->error($model,'description'); ?>
 	</div>
-
-	<?php 
-           $this->widget('application.modules.catalog.components.InputAttributesForm', array('productAttributes'=>$model->productAttrubute, 'category'=>$model->idCategory));
-    ?>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Добавить' : 'Сохранить'); ?>

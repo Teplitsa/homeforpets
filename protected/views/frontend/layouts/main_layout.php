@@ -29,11 +29,11 @@
 					<div class="bot-l">
 						<?php if ($this->layout == 'first_page'): ?>
 							<a href="/ja-hochu-pomoch" class="s-btn">Я хочу помочь</a>
-							<a href="/" class="s-btn par">Предложить животное</a>
+							<a href="/catalog/response" class="s-btn par">Предложить животное</a>
 						<?php else: ?>
 							<?php 
 								$backUrl = "/";
-								if (isset($this->module) and $this->module->id == 'catalog')
+								if (isset($this->module) and $this->module->id == 'catalog' and isset($this->action) and $this->action->id != 'index')
 									$backUrl .= 'catalog';
 								if (isset($this->action) and $this->action->id == 'product')
 								{
@@ -47,12 +47,7 @@
 						<?php endif; ?>
 					</div>
 					<div class="bot-r">
-						<a href="#" class="sc-btn"><img src="/images/soc-in.png" alt=""/></a>
-						<a href="#" class="sc-btn"><img src="/images/soc-fb.png" alt=""/></a>
-						<a href="#" class="sc-btn"><img src="/images/soc-tw.png" alt=""/></a>
-						<a href="#" class="sc-btn"><img src="/images/soc-vk.png" alt=""/></a>
-						<a href="#" class="sc-btn"><img src="/images/soc-ok.png" alt=""/></a>
-						<a href="#" class="sc-sh-btn">Поделиться</a>
+						<?php $this->widget('application.widgets.OutAreaWidget', array('name' => 'sotsseti-v-shapke')); ?>
 					</div>
 				</div>
 			</div>
@@ -75,7 +70,7 @@
 						<a href="/"><img src="/images/logo.png" alt=""/></a>
 					</div>
 					<div class="dev">
-						<a href="http://plus1dev.ru/"><img src="/images/logo+1.png" alt=""/></a>
+						<a href="http://plus1dev.ru/" target="blank"><img src="/images/logo+1.png" alt=""/></a>
 					</div>
 				</div>
 			</div>

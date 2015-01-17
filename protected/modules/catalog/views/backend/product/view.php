@@ -55,14 +55,14 @@ $cs->registerScript('shadd', "
     <h2>Основное фото</h2>
     <?php
         if($model->photo){
-            echo CHtml::link(CHtml::image('/upload/catalog/product/medium/' . $model->photo, $model->title) , array('/upload/catalog/product/' . $model->photo), array('rel' => 'example_group'));
-        } else{echo CHtml::image('/images/nophoto.jpg', $model->title);}
+            echo CHtml::link(CHtml::image('/upload/catalog/product/medium/' . $model->photo, $model->title, array('width' => '30%')) , array('/upload/catalog/product/' . $model->photo), array('rel' => 'example_group'));
+        } else{echo CHtml::image('/images/nophoto.jpg', $model->title, array('width' => '30%'));}
     ?>
 </div>
 <div class="dop_photo">
-    <h2>Дополнительные фото</h2>
-    <?php if (isset($model->catalogImages)):
-        foreach ($model->catalogImages as $image) :?>
+    <?php if ($model->catalogImages): ?>
+		 <h2>Дополнительные фото</h2>
+		<?php foreach ($model->catalogImages as $image) :?>
         <?php echo CHtml::link(CHtml::image('/upload/catalog/product/moreimages/small/' . $image->image, $model->title), '/upload/catalog/product/moreimages/' . $image->image, array('rel' => 'example_group')); ?>
         <?php
             endforeach;
@@ -71,106 +71,24 @@ $cs->registerScript('shadd', "
 <div class="clear"></div>
 <table class="viewinfo">
     <tr>
-        <td>
-            Характеристики:
-        </td>
-        <td>
-            <table class="viewattr">
-                <? $attrs=$model->outAttrs(); foreach($attrs as $attr):?>
-                 <tr><td class="label"><span><?=$attr['title'];?></span></td>
-                     <td>
-                         <?
-                            if(is_array($attr['value'])){
-                                echo implode(', ', $attr['value']);
-                            }else{
-                               echo $attr['value'];
-                            }
-
-                         ?>
-                     </td>
-                 </tr>
-                <?endforeach?>
-            </table>
-        </td>
-    </tr>
-    <!--tr>
-        <td>Старая цена:</td><td><?// echo $model->old_price;?></td>
+        <td>Город:</td><td><?php echo $model->city;?></td>
     </tr>
     <tr>
-        <td>Цена:</td>
-        <td>
-            <span class="label">Без ценового профиля:</span> <?// echo $model->outPrice('{price}', 0);?><br/>
-            <span class="label">C ценовым профилем:</span> <?// echo $model->outPriceProfiled('{price}', 0);?><br/>
-            <span class="label">Отобразится на сайте:</span> <?// echo $model->outPriceCounted(1, '{price}', 0);?><br/>
-        </td>
+        <td>Возраст:</td><td><?php echo $model->getAgeDesc();?></td>
     </tr>
     <tr>
-        <td>Ценовой профиль:</td><td><?// echo ($model->thisPriceprofile ? $model->thisPriceprofile->name.' (множитель: '.$model->thisPriceprofile->factor.', коррекция: '.$model->thisPriceprofile->corrector.')' : 'Не применять');?></td>
-    </tr-->
-    <?/*tr>
-        <td>Специальное размещение:</td>
-        <td>
-            <span class="label">На главной странице:</span> <? echo ($model->on_main ? 'Да' : 'Нет');?><br/>
-            <!--span class="label">Хит продаж:</span> <?// echo ($model->hit ? 'Да' : 'Нет');?><br/>
-            <span class="label">Рекомендуемый товар:</span> <?// echo ($model->recomended ? 'Да' : 'Нет');?><br/-->
-        </td>
-    </tr*/?>
-    <tr>
-        <td>Количество просмотров:</td><td><? echo $model->views;?></td>
+        <td>Пол:</td><td><?php echo $model->getSexDesc();?></td>
     </tr>
     <tr>
-        <td>Отображение в каталоге:</td><td><? echo ($model->hide ? 'Нет' : 'Да');?></td>
+        <td>Стерилизация и прививки:</td><td><?php echo $model->getMedDesc();?></td>
     </tr>
-    
+    <tr>
+        <td>Отображение на сайте:</td><td><? echo ($model->hide ? 'Нет' : 'Да');?></td>
+    </tr>
+    <tr>
+        <td>Количество просмотров:</td><td><?php echo (int)$model->views;?></td>
+    </tr>
 </table>
-<!--h3>Варианты комплектации</h3-->
-<?/*php
-echo CHtml::link('+ Добавить вариант', array('complectation/create', 'product_id'=>$model->id), array('class'=>'add_element'));
-$this->widget('application.extensions.admingrid.MyRGridView', array(
-	'id'=>'catalog-complectation-grid',
-	'dataProvider'=>$complectationProvider,
-    'orderUrl'=>array('/manage/catalog/complectation/order'),
-	'columns'=>array(
-		'title',
-		'name',
-		//'article',
-		array(
-            'name'=>'article',
-            'value'=>'($data->type==1 ? $data->article : "")',
-        ),
-        array(
-            'name'=>'type',
-            'value'=>'isset($data->types[$data->type]) ? $data->types[$data->type] : "Не установлен"',
-        ),
-        array(
-            'header'=>'Коррекция цены',
-            'type'=>'raw',
-            'value'=>'$data->type==1 ? $data->outCorrType()." ".$data->outPriceCorrection("{price}",0) : CHtml::link("Значения и цены", "/manage/catalog/complectationValues?complectation_id=".$data->id)',
-        ),
-		array(
-			'class'=>'MyRButtonColumn',
-			'template' => '{update}{delete}',
-			'buttons'=>array
-			(
-				'update' => array
-				(
-					'imageUrl'=>Yii::app()->request->baseUrl.'/images/admin/edit.png',
-					'url'=>'Yii::app()->createUrl("catalog/complectation/update", array("id" => $data->id))',
-				),
-				'delete' => array
-				(
-					'imageUrl'=>Yii::app()->request->baseUrl.'/images/admin/del.png',
-					'url'=>'Yii::app()->createUrl("catalog/complectation/delete", array("id" => $data->id))',
-				),
-			),
-
-		),
-        array(
-            'class'=>'application.modules.catalog.components.SSortable.ComplectationSSortableColumn',
-        ),
-	),
-)); */ ?>
-
 <h3>Описание</h3>
 <a href="#" class="showhide">Показать</a>
 <div style="display: none;"><?=$model->description;?></div>
