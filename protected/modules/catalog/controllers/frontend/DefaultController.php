@@ -13,7 +13,7 @@ class DefaultController extends BaseCatalogController
 
 	public function actionCategory($link, $offset = 0)
 	{
-		$category = $this->loadCategoryModelFast($link);
+		$category = $this->loadCategoryModel($link);
 		$this->metaInfoGenerate($category->title, $category->keywords, $this->catalog_config->description);
 		$this->category = $category->id;
 		$criteria = new CDbCriteria;
