@@ -22,7 +22,7 @@ class DefaultController extends BaseCatalogController
 		$criteria->addCondition('hide=0 OR hide is NULL');
 		$criteria->addCondition('attach=0');
 		$criteria->order = 'sort_order ASC';
-		$criteria->limit = 6;
+		$criteria->limit = 9;
 		$criteria->offset = $offset;
 		$dataProvider = new CActiveDataProvider('CatalogProduct', array(
 			'criteria' => $criteria,

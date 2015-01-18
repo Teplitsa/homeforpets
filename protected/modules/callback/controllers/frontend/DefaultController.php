@@ -75,7 +75,9 @@ class DefaultController extends FrontEndController
                 $this->refresh();
             }
         }
-
-        $this->render('phoneback', array('model' => $model));
+		if (Yii::app()->request->isAjaxRequest)
+			$this->renderPartial('ajaxphoneback', array('model' => $model));
+		else
+			$this->render('phoneback', array('model' => $model));
     }
 }

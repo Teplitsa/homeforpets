@@ -6,6 +6,6 @@
 	'itemView' => '_productview',
 	'emptyText' => 'Нет животных',
 )); ?>
-<?php if ($dataProvider->totalItemCount - $offset > 6):?>
-<div class="more"><a href="/catalog/default/category/link/<?php echo $category->link; ?>" data-offset="<?php echo ($offset+6);?>">Посмотреть еще</a></div>
+<?php if ($dataProvider->totalItemCount - $offset > 9):?>
+<div class="more"><a href="/catalog/default/category/link/<?php echo $category->link; ?>" data-offset="<?php echo ($offset+9);?>">Посмотреть еще</a></div>
 <?php endif; ?>

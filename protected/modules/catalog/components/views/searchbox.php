@@ -34,11 +34,13 @@ Yii::app()->clientScript->registerScript('search-pets',"
 		<div class="column mh">
 			<?php echo CHtml::label('Возраст', 'params[ageFrom]'); ?>:
 			<div class="column-left">
-				<?php echo CHtml::textField('params[ageFrom]', $params['ageFrom'], array('maxlength' => 256, 'placeholder' => 'от')); ?>
+				<div class="text">от</div>
+				<?php echo CHtml::textField('params[ageFrom]', $params['ageFrom'], array('maxlength' => 256)); ?>
 				<?php echo CHtml::dropDownList('params[ageFromUnit]', $params['ageFromUnit'], array(7 => 'Недель', 30 => 'Месяцев', 365 => 'Лет')); ?>
 			</div>
 			<div class="column-right">
-				<?php echo CHtml::textField('params[ageTo]', $params['ageTo'], array('maxlength' => 256, 'placeholder' => 'до')); ?>
+				<div class="text">до</div>
+				<?php echo CHtml::textField('params[ageTo]', $params['ageTo'], array('maxlength' => 256)); ?>
 				<?php echo CHtml::dropDownList('params[ageToUnit]', $params['ageToUnit'], array(7 => 'Недель', 30 => 'Месяцев', 365 => 'Лет')); ?>
 			</div>
 		</div>

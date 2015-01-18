@@ -4,7 +4,8 @@ $cs->registerScriptFile('/js/jquery.fancybox.js', CClientScript::POS_HEAD);
 $cs->registerCssFile('/css/fancybox/jquery.fancybox.css');
 
 Yii::app()->clientScript->registerScript('images', "
-  $('a[rel=example_group]').fancybox({
+
+	$('a[rel=example_group]').fancybox({
 		openEffect  : 'none',
 		closeEffect	: 'none',
 		helpers : {
@@ -13,6 +14,42 @@ Yii::app()->clientScript->registerScript('images', "
 			}
 		}
 	});
+	
+	$('a.phoneback').fancybox({
+		openEffect  : 'none',
+		closeEffect	: 'none',
+		width: 'auto',
+		padding: 20,
+		wrapCSS: 'phoneback-container',
+		closeBtn: false,
+		helpers : {
+			overlay : {
+				locked : false
+			}
+		}
+	});
+	
+	$(document).on('click', 'a.form-close',function(){
+		$.fancybox.close();
+		return false; 
+	});
+	
+	$(document).on('submit', '#phoneback-form',function(){
+		$.ajax({
+			type: 'POST',
+			url: $(this).prop('action'),
+			data: $(this).serialize(),
+			beforeSend: function(){
+				$.fancybox.showLoading();
+			},
+			success: function(data){
+				$('.phoneback-container .fancybox-inner').html(data);
+				$.fancybox.hideLoading();
+			},
+		});
+		return false; 
+	});
+	
 ", CClientScript::POS_READY);
 Yii::app()->clientScript->registerScript('catalog-products-fav', "
 	
@@ -94,33 +131,9 @@ Yii::app()->clientScript->registerScript('catalog-products-fav', "
 			<?php if ($model->owner_phone): ?>
 				<div class="phone"><?php echo $model->owner_phone;?></div>
 			<?php endif; ?>
-			<?/*php if ($attrs = $model->outAttrs()): $k = 0;?>
-			<table>
-				<tr>
-				<?php foreach($attrs as $attr): ?>
-					<?php 
-						$value = "";
-						if (is_array($attr['value']))
-							$value = implode(', ', $attr['value']);
-						else
-							$value = $attr['value'];
-					?>
-					<?php if ($value): $k++;?>
-						<td class="label"><?php echo $attr['title'];?></td>
-						<td class="value"><?php echo $value; ?></td>				    
-						<?php if ($k % 2 == 0): ?>
-							</tr><tr>
-						<?php else: ?>
-							<td class="empty"></td>
-						<?php endif; ?>
-					 <?endif;?>
-				<?php endforeach?>
-				</tr>
-			</table>
-			<?php endif; */?>   
 			<?php $favIds = (Yii::app()->session['favorite'] ? Yii::app()->session['favorite'] : array());?>
-			<a href="/styles" class="s-btn add-favorite<?php echo (in_array($model->id, $favIds) ? ' added' : ''); ?>" data-id="<?php echo $model->id;?>"><img src="/images/favorite.png" alt=""><?php echo (in_array($model->id, $favIds) ? 'Убрать из избранного' : 'Добавить в избранное'); ?></a><br/>
-			<!--a href="/styles" class="s-btn">Перезвонить мне</a-->
+			<a href="#" class="s-btn add-favorite<?php echo (in_array($model->id, $favIds) ? ' added' : ''); ?>" data-id="<?php echo $model->id;?>"><img src="/images/favorite.png" alt=""><?php echo (in_array($model->id, $favIds) ? 'Убрать из избранного' : 'Добавить в избранное'); ?></a><br/>
+			<a href="/callback/default/phoneback" class="s-btn phoneback fancybox.ajax"><img src="/images/phone.png" alt="">Перезвонить мне</a>
 		</div>
 		<div class="clear"></div>
 		<div class="info">

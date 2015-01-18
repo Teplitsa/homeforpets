@@ -26,7 +26,7 @@ class PhonebackForm extends CFormModel
     public function rules()
     {
         return array(
-            array('name, company, phone', 'required'),
+            array('name, phone', 'required'),
         );
     }
 
@@ -38,9 +38,9 @@ class PhonebackForm extends CFormModel
     public function attributeLabels()
     {
         return array(
-            'name' => 'Ваше имя',
+            'name' => 'Ваше Имя',
             'company' => 'Название организации',
-            'phone' => 'Контактный телефон',
+            'phone' => 'Ваш телефон',
         );
     }
 }
