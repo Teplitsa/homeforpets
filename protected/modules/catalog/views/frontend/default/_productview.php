@@ -1,4 +1,4 @@
-<?php if ((($index + 1) == 4) or ($index  == 0 and Yii::app()->request->isAjaxRequest)):?>
+<?php if ((($index + 1) == 4) or (($index + 1) == 7) or ($index  == 0 and Yii::app()->request->isAjaxRequest)):?>
 	<div class="track-line"></div>
 <?php endif; ?>
 <div class="product<?php echo (($index + 1) % 3 == 0 ? " nm3" : "") . (($index + 1) % 2 == 0 ? " nm2" : "");?>">
