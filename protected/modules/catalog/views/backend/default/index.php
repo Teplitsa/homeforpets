@@ -156,7 +156,8 @@ $this->widget('ext.plusone.ExtGridView', array(
 
 		),
         array(
-            'class' => 'application.modules.catalog.components.SSortable.SSortableCatalogColumn',
+            'class' => 'ext.SSortable.SSortableColumn',
+			'controller' => 'product',
         ),
 	),
 )); 

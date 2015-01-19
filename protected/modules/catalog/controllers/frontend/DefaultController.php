@@ -60,18 +60,8 @@ class DefaultController extends BaseCatalogController
             // формируем заголовок и метатеги старницы
             $this->metaInfoGenerate($model->title, $model->keywords, $this->catalog_config->description);
 
-            //$cs=Yii::app()->clientScript;
-            // Подключаем свой скрипт
-            //$cs->registerScriptFile('/js/jquery.jcarousel.js', CClientScript::POS_HEAD);
-            //$cs->registerScriptFile('/js/jquery.fancybox.js', CClientScript::POS_HEAD);
-            //$cs->registerCssFile('/css/fancy.css');
-            //$cs->registerCssFile('/css/tango/skin.css');
-
-            //$review=new CatalogReviews();
-
             $this->render('product',array(
                 'model'=>$model,
-                //'review'=>$review,
             ));
 
         } else throw new CHttpException(404,'The requested page does not exist.');
@@ -90,121 +80,6 @@ class DefaultController extends BaseCatalogController
         ));
     }
 
-    public function actionSearchbox(){
-        if(isset($_POST['selectionParameters'])){
-            $selectionParameters=$_POST['selectionParameters'];
-        }else{$selectionParameters=array();}
-
-        // Если не передан параметр "Категория" - устанавливаем ее корневой
-        if(!isset($selectionParameters['category'])){
-            $selectionParameters['category']=0;
-        }
-
-        // Создаем корневую категорию
-        $root_category=new CatalogCategory();
-        $root_category->id=0;
-
-        $category=CatalogCategory::model()->with('use_attribute')->findByPk($selectionParameters['category']);
-        if(!$category){
-            $category=$root_category;
-        }
-
-        // Берем id всех подкатегорий
-        $allCategoryIds=array_merge($category->allChildIds, (array)$category->id);
-
-        /*
-        // Выбираем все товары из категории
-        $criteria=new CDbCriteria;
-        $criteria->compare('id_category', $allCategoryIds);
-        $allprod=CatalogProduct::model()->findAll($criteria);
-
-        // Берем все существующие значения в категории
-        $allExistedParametersCategory=CatalogProduct::getAllExistedParameters($allprod);
-        */
-        
-        // Выбираем все существующие параметры категории
-        $allExistedParametersCategory=CatalogCategoryExistparam::getParams($allCategoryIds);
-        
-		
-        // Отбираем товары по заданным критериям
-        $selectedProd=CatalogProduct::selectionProducts($selectionParameters);
-
-        // Берем существующие значения параметров из выборки
-        $existedParameters=CatalogProduct::getAllExistedParameters($selectedProd);
-        print_r($existedParameters);
-        // Отбираем атрибуты
-        $attributes=array();
-		$attrRanges=array();
-        foreach($category->use_attribute as $attr){
-            if($attr->id_attribute_kind==3 || $attr->id_attribute_kind==4){
-                $attributes[]=$attr;
-                if(!isset($selectionParameters['attributes'][$attr->name])){
-                    $selectionParameters['attributes'][$attr->name]=array();
-                }
-            }
-            if($attr->id_attribute_kind==1){
-                
-                $attrRanges[$attr->name]=array(
-                    'min'=>(isset($allExistedParametersCategory[$attr->id]) ? floor(min($allExistedParametersCategory[$attr->id])) : 0),
-                    'max'=>(isset($allExistedParametersCategory[$attr->id]) ? max($allExistedParametersCategory[$attr->id]) : 0),
-                );
-                if(!isset($selectionParameters['attributes'][$attr->name])){
-                    $selectionParameters['attributes'][$attr->name]=array(
-                        'min'=>$attrRanges[$attr->name]['min'],
-                        'max'=>$attrRanges[$attr->name]['max']+1,
-                    );
-
-                }
-            }
-        }
-        
-        $root_category=new CatalogCategory();
-        $root_category->id=0;
-        $category_list=$root_category->allChildsList;
-        $brand_list=CatalogBrands::arrayDropList();
-        $priceRange=array(
-            'min'=>(isset($allExistedParametersCategory['price']) ? min($allExistedParametersCategory['price']) : 0),
-            'max'=>(isset($allExistedParametersCategory['price']) ? max($allExistedParametersCategory['price']) : 0),
-        );
-
-        // Если какие-то параметры не переданы - выставляем умолчания
-        if(!isset($selectionParameters['pricefrom'])) $selectionParameters['pricefrom']=$priceRange['min'];
-        if(!isset($selectionParameters['priceto'])) $selectionParameters['priceto']=$priceRange['max']+1;
-        if(!isset($selectionParameters['brand'])) $selectionParameters['brand']=array();
-        
-        $this->renderPartial('application.modules.catalog.components.views.searchboxinner', array(
-                                                                                     'category_list'=>$category_list,
-                                                                                     'brand_list'=>$brand_list,
-                                                                                     'priceRange'=>$priceRange,
-                                                                                     'selectionParameters'=>$selectionParameters,
-                                                                                     'existedParameters'=>$existedParameters,
-                                                                                     'allExistedParametersCategory'=>$allExistedParametersCategory,
-                                                                                     'attributes'=>$attributes,
-                                                                                     'attrRanges'=>$attrRanges,
-                                                                                   ));
-
-    }
-
-    // Собираем используемые параметры категорий
-    public function actionParamindex(){
-        // Очищаем всю таблицу
-        CatalogCategoryExistparam::model()->deleteAll();
-		
-		$criteria=new CDbCriteria;
-		$criteria->select='id';
-		$criteria->with=array('catalogProductsForExist');
-		
-        $categories=CatalogCategory::model()->findAll($criteria);
-        foreach($categories as $category){
-            $existParameters=$category->getExistingParameters();
-            $categoryExistingParams=new CatalogCategoryExistparam();
-            $categoryExistingParams->category_id=$category->id;
-            $categoryExistingParams->existparam=serialize($existParameters);
-            $categoryExistingParams->save();
-        }
-
-        echo "Индексирование прошло успешно!";
-    }
 
 	public function loadCategoryModel($link)
 	{
@@ -232,7 +107,7 @@ class DefaultController extends BaseCatalogController
 	
 	public function loadProductModelFast($id)
 	{
-		$model=CatalogProduct::model()->with('related_products','productAttrubute','idCategoryFast','catalogImages')->findByPk($id);
+		$model=CatalogProduct::model()->with('idCategoryFast','catalogImages')->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
