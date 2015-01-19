@@ -103,6 +103,11 @@ class m150119_081723_catalog extends CDbMigration
 			  KEY `hide` (`hide`),
 			  KEY `title` (`title`)
 			) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+			
+			INSERT INTO `catalog_config` (`id`, `title`, `keywords`, `description`, `text`, `layout`, `cat_perpage`, `product_perpage`, `c_image_small_w`, `c_image_small_h`, `p_image_middle_w`, `p_image_middle_h`, `p_image_small_w`, `p_image_small_h`, `watermark_image`, `watermark_x`, `watermark_y`, `no_watermark`, `attached`) VALUES
+(1, 'Каталог животных', 'Каталог животных', 'Каталог животных', '<p>\r\n	&nbsp;</p>\r\n<p>\r\n	&nbsp;</p>\r\n', '//layouts/main_layout', 20, 20, 200, 200, 536, 536, 220, 220, 'a716f49112379c4e237e5a224eb3b55f.png', 50, 50, 1, 0);
+
+			
 		")->execute();
 	}
 
