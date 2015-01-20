@@ -39,7 +39,7 @@
                     'name' => 'view',
                     'type' => 'raw',
                     'header' => 'Вид',
-                    'value' => 'isset($data->getViews()[$data->view]) ? $data->getViews()[$data->view] : "Не указан"',
+                    'value' => '($data->getCurrentView() ? $data->getCurrentView() : "Не указан")',
                 ),
                 array(
                     'name' => 'visible',

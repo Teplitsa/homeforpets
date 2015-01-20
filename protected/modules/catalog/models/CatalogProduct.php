@@ -303,8 +303,6 @@ class CatalogProduct extends CActiveRecord
 
         if(parent::beforeDelete())
         {
-            foreach($this->productAttrubute as $a)
-                $a->delete();
             // Удаляем дополнительные картинки товара
 			foreach ($this->catalogImages as $image) {
 				@unlink ($this->folder . '/moreimages/' . $image->image);
@@ -319,12 +317,6 @@ class CatalogProduct extends CActiveRecord
             @unlink ($this->folder . '/medium/' . $this->photo);
             @unlink ($this->folder . '/small/' . $this->photo);
 
-            // Удаляем все комплектации товара
-            if(isset($this->complectations)){
-                foreach($this->complectations as $complectation){
-                   $complectation->delete();
-                }
-            }
             return true;
         }
         else
