@@ -10,6 +10,19 @@
 	<title><?php if ($this->title) echo CHtml::encode($this->title), ' - ', CHtml::encode(Yii::app()->config->sitename);?></title>
 	<link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 	<link href="<?php echo Yii::app()->request->baseUrl; ?>/css/style.css" rel="stylesheet" type="text/css"/>
+	<script type="text/javascript" src="//yastatic.net/share/share.js" charset="utf-8"></script></div>
+	<?php Yii::app()->clientScript->registerScript('ya-share', "
+		new Ya.share({
+			element: 'ya-share',
+			elementStyle: {'text': '', 'type': 'link', 'border': false, 'quickServices': []},
+			popupStyle: {
+				blocks: {
+					'Поделитесь с друзьями': ['facebook', 'vkontakte', 'twitter', 'odnoklassniki', 'gplus', 'moimir', 'lj', 'friendfeed', 'moikrug', 'surfingbird'],
+				},
+				copyPasteField: true
+			},
+		});
+	", CClientScript::POS_READY); ?>
 </head>
 <body>
 	<div class="wrapper">

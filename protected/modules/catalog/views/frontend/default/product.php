@@ -82,7 +82,7 @@ Yii::app()->clientScript->registerScript('catalog-products-fav', "
 ?>
 <div class="catalog-category">
 	<div class="product-view">
-		<h1><span><?php echo $model->title; ?></span></h1>
+		<h1 class="<?php echo $model->idCategory->getCustomName();?>"><span><?php echo $model->title; ?></span></h1>
 		<div class="left">
 			<div class="image">
 				<?php

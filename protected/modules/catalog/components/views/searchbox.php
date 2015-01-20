@@ -17,14 +17,28 @@ Yii::app()->clientScript->registerScript('search-pets',"
  
 ", CClientScript::POS_READY);
 ?>
+<?php if ($params['category']): ?>
+<?php
+Yii::app()->clientScript->registerScript('show-hide',"
+	
+	$(document).on('click', '.catalog-category a.show-hide', function() {
+		$('#seacrh-form').toggle();
+		return false;
+	});
+	
+", CClientScript::POS_READY);
+?>
+<a href="#" class="show-hide">Подбор питомца</a>
+<?php endif; ?>
 <?php $form = $this->beginWidget('CActiveForm', array(
 	'id' => 'seacrh-form',
     'action' => '/catalog/default/selection',
     'method' => 'get',
+	'htmlOptions' => array('style' => 'display:' . ($params['category'] ? 'none' : 'block')),
 )); ?>
 <div class="s-form">
 	<div class="row">
-		<h1>Подобрать животное</h1>
+		<h1>Подобрать питомца</h1>
 	</div>
 	<div class="row">
 		<div class="column">
