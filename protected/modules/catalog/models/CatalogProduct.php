@@ -184,7 +184,7 @@ class CatalogProduct extends CActiveRecord
 		$criteria->compare('idCategory.sort_order',$this->id_category,true);*/
 	
 		$sort = new CSort();
-        $sort->defaultOrder = 't.sort_order ASC';
+        $sort->defaultOrder = 't.sort_order DESC';
 		/*$sort->attributes = array( 
                 'category' => array(
 					'asc'=> 'idCategory.sort_order',
@@ -376,7 +376,7 @@ class CatalogProduct extends CActiveRecord
     public static function selectionProvider($params = array())
 	{
 		$criteria = new CDbCriteria;
-		$criteria->order = 'sort_order ASC';
+		$criteria->order = 'sort_order DESC';
 		$criteria->addCondition('hide = 0 OR hide is NULL');
 		$criteria->addCondition('attach = 0');
 		if (!empty($params))

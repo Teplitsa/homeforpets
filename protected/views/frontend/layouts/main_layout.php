@@ -78,7 +78,7 @@
 				<div class="track-line"></div>
 				<div class="bot">
 					<div class="logo">
-						<a href="/"><img src="/images/logo.png" alt=""/></a>
+						<a href="http://te-st.ru/"><img src="/images/logo-t.png" alt=""/></a>
 					</div>
 					<div class="dev">
 						<a href="http://plus1dev.ru/" target="blank"><img src="/images/logo+1.png" alt=""/></a>
