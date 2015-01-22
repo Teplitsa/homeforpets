@@ -221,7 +221,7 @@ class CatalogProduct extends CActiveRecord
             }
 			$this->article=trim($this->article);
 			
-			if	($photo = CUploadedFile::getInstance($this, 'photo')){
+			if	($photo = CUploadedFile::getInstance($this, 'photo') or $photo = CUploadedFile::getInstance(new ResponseForm, 'photo')){
 				$name = md5(time().$photo).'.'.$photo->getExtensionName();
 				$this->photo = $name;
 				$photo->saveAs($this->folder . '/' . $name);

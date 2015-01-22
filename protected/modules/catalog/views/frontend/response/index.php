@@ -21,6 +21,7 @@ Yii::app()->clientScript->registerScript('group',"
 <div class="s-form">
 <?php $form = $this->beginWidget('CActiveForm', array(
 	'id' => 'catalog-response-form',
+	'htmlOptions'=>array('enctype' => 'multipart/form-data'),
 )); ?>
 
 	<?php echo $form->errorSummary($model); ?>
@@ -94,6 +95,11 @@ Yii::app()->clientScript->registerScript('group',"
 				<?php echo $form->textField($model, 'size', array('maxlength' => 256)); ?>
 			</div>
 		</div>
+	</div>
+	
+	<div class="row wp">
+		<?php echo $form->label($model, 'photo'); ?>:
+		<?php echo $form->fileField($model, 'photo'); ?>
 	</div>
 	
 	<div class="row wp">
