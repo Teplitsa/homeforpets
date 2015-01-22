@@ -1,15 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 	<meta name="keywords" content="<?php echo CHtml::encode($this->keywords); ?>"/>
 	<meta name="description" content="<?php echo CHtml::encode($this->description); ?>"/>
-	<meta name="language" content="ru" />
 	<meta name="author" content="<?php echo CHtml::encode(Yii::app()->config->author); ?>"/>
 	<title><?php if ($this->title) echo CHtml::encode($this->title), ' - ', CHtml::encode(Yii::app()->config->sitename);?></title>
 	<link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
 	<link href="<?php echo Yii::app()->request->baseUrl; ?>/css/style.css" rel="stylesheet" type="text/css"/>
+	<script type="text/javascript" src="//yastatic.net/share/share.js" charset="utf-8"></script>
+	<?php Yii::app()->clientScript->registerScript('ya-share', "
+		new Ya.share({
+			element: 'ya-share',
+			elementStyle: {'text': '', 'type': 'link', 'border': false, 'quickServices': []},
+			popupStyle: {
+				blocks: {
+					'Поделитесь с друзьями': ['facebook', 'vkontakte', 'twitter', 'odnoklassniki', 'gplus', 'moimir', 'lj', 'friendfeed', 'moikrug', 'surfingbird'],
+				},
+				copyPasteField: true
+			},
+		});
+	", CClientScript::POS_READY); ?>
 </head>
 <body>
 	<div class="wrapper">
@@ -65,7 +77,7 @@
 				<div class="track-line"></div>
 				<div class="bot">
 					<div class="logo">
-						<a href="/"><img src="/images/logo.png" alt=""/></a>
+						<a href="http://te-st.ru/" target="blank"><img src="/images/logo-t.png" alt=""/></a>
 					</div>
 					<div class="dev">
 						<a href="http://plus1dev.ru/" target="blank"><img src="/images/logo+1.png" alt=""/></a>

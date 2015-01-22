@@ -143,8 +143,8 @@ class CatalogProduct extends CActiveRecord
             'terms' => 'Условия проживания',
             'curator_name' => 'Имя куратора',
             'curator_phone' => 'Телефон куратора',
-            'owner_name' => 'Имя приютивщего',
-            'owner_phone' => 'Телефон приютивщего',
+            'owner_name' => 'Имя дополнительного куратора',
+            'owner_phone' => 'Телефон дополнительного куратора',
             'attach' => 'Пристроили?',
             'color' => 'Цвет(Окрас)',
             'size' => 'Размер',
@@ -184,7 +184,7 @@ class CatalogProduct extends CActiveRecord
 		$criteria->compare('idCategory.sort_order',$this->id_category,true);*/
 	
 		$sort = new CSort();
-        $sort->defaultOrder = 't.sort_order ASC';
+        $sort->defaultOrder = 't.sort_order DESC';
 		/*$sort->attributes = array( 
                 'category' => array(
 					'asc'=> 'idCategory.sort_order',
@@ -303,8 +303,6 @@ class CatalogProduct extends CActiveRecord
 
         if(parent::beforeDelete())
         {
-            foreach($this->productAttrubute as $a)
-                $a->delete();
             // Удаляем дополнительные картинки товара
 			foreach ($this->catalogImages as $image) {
 				@unlink ($this->folder . '/moreimages/' . $image->image);
@@ -319,12 +317,6 @@ class CatalogProduct extends CActiveRecord
             @unlink ($this->folder . '/medium/' . $this->photo);
             @unlink ($this->folder . '/small/' . $this->photo);
 
-            // Удаляем все комплектации товара
-            if(isset($this->complectations)){
-                foreach($this->complectations as $complectation){
-                   $complectation->delete();
-                }
-            }
             return true;
         }
         else
@@ -384,7 +376,7 @@ class CatalogProduct extends CActiveRecord
     public static function selectionProvider($params = array())
 	{
 		$criteria = new CDbCriteria;
-		$criteria->order = 'sort_order ASC';
+		$criteria->order = 'sort_order DESC';
 		$criteria->addCondition('hide = 0 OR hide is NULL');
 		$criteria->addCondition('attach = 0');
 		if (!empty($params))

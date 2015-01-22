@@ -21,7 +21,7 @@ class DefaultController extends BaseCatalogController
 		$criteria->compare('id_category', $category->id);
 		$criteria->addCondition('hide=0 OR hide is NULL');
 		$criteria->addCondition('attach=0');
-		$criteria->order = 'sort_order ASC';
+		$criteria->order = 'sort_order DESC';
 		$criteria->limit = 9;
 		$criteria->offset = $offset;
 		$dataProvider = new CActiveDataProvider('CatalogProduct', array(

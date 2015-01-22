@@ -26,8 +26,8 @@ class SearchboxWidget extends CPortlet
 	{
 		$params = CMap::mergeArray($this->defaultParams, $this->params);
 		$colorList = $sizeList = array();
-		$colorList = CHtml::listData(Yii::app()->db->createCommand("SELECT DISTINCT(`color`) FROM `catalog_product` WHERE `color` <> '' AND id_category = 1;")->queryAll(), 'color', 'color');
-		$sizeList = CHtml::listData(Yii::app()->db->createCommand("SELECT DISTINCT(`size`) FROM `catalog_product` WHERE `size` <> '' AND id_category = 2;")->queryAll(), 'size', 'size');
+		$colorList = CHtml::listData(Yii::app()->db->createCommand("SELECT DISTINCT(`color`) FROM `catalog_product` WHERE `color` <> '' AND id_category = 1 AND (hide = 0 OR hide is NULL);")->queryAll(), 'color', 'color');
+		$sizeList = CHtml::listData(Yii::app()->db->createCommand("SELECT DISTINCT(`size`) FROM `catalog_product` WHERE `size` <> '' AND id_category = 2 AND (hide = 0 OR hide is NULL);")->queryAll(), 'size', 'size');
 		
 		$this->render($this->view, array(
 			'params' => $params,

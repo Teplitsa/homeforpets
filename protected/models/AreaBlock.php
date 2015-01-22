@@ -121,4 +121,17 @@ class AreaBlock extends CActiveRecord
            'areablocknotitle' => 'Блок без заголовка',
         );
     }
+	
+	 /**
+     * Returns current block view name
+     * @return string|null
+     */
+	public function getCurrentView()
+	{
+		$result = null;
+		if ($views = $this->getViews() and array_key_exists($this->view, $views))
+			$result = $views[$this->view];
+			
+		return $result;
+	}
 }
