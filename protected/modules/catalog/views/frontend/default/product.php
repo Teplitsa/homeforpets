@@ -5,7 +5,7 @@ $cs->registerCssFile('/css/fancybox/jquery.fancybox.css');
 
 Yii::app()->clientScript->registerScript('images', "
 
-	$('a[rel=example_group]').fancybox({
+	$('a[rel=lightbox]').fancybox({
 		openEffect  : 'none',
 		closeEffect	: 'none',
 		helpers : {
@@ -87,7 +87,7 @@ Yii::app()->clientScript->registerScript('catalog-products-fav', "
 			<div class="image">
 				<?php
 					if ($model->photo)
-						echo CHtml::link(CHtml::image('/upload/catalog/product/medium/' . $model->photo, $model->title) , array('/upload/catalog/product/' . $model->photo), array('rel'=>'example_group')); 
+						echo CHtml::link(CHtml::image('/upload/catalog/product/medium/' . $model->photo, $model->title) , array('/upload/catalog/product/' . $model->photo), array('rel'=>'lightbox')); 
 					else
 						echo CHtml::image('/images/nophoto.jpg', $model->title);
 				?>
@@ -95,7 +95,7 @@ Yii::app()->clientScript->registerScript('catalog-products-fav', "
 			<?php if (isset($model->catalogImages)): $k = 0;?>
 				<div class="previews">
 					<?php foreach ($model->catalogImages as $image): $k++;?>
-						<?php echo CHtml::link(CHtml::image('/upload/catalog/product/moreimages/medium/' . $image->image, $model->title), '/upload/catalog/product/moreimages/' . $image->image, array('rel'=>'example_group')); ?>
+						<?php echo CHtml::link(CHtml::image('/upload/catalog/product/moreimages/medium/' . $image->image, $model->title), '/upload/catalog/product/moreimages/' . $image->image, array('rel'=>'lightbox')); ?>
 						<?php if ($k == 4) break; ?> 
 					<?php endforeach; ?>
 				</div>		
