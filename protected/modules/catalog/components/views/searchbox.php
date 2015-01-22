@@ -74,7 +74,7 @@ Yii::app()->clientScript->registerScript('show-hide',"
 	<div class="row">
 		<div class="column">
 			<div class="group-block" data-form-group="1" style="display:<?php echo ($params['category'] == 1 ? 'block' : 'none');?>">
-				<?php echo CHtml::label('Цвет(Окрас)', 'params_color'); ?>:<br/>
+				<?php echo CHtml::label('Цвет(Окрас)', ''); ?>:<br/>
 				<?php echo CHtml::checkBoxList('params[color][]', $params['color'], $colorList, array('separator' => '', 'template' => '<span class="did">{input} {label}</span>')); ?>
 				<span class="did">	
 					<?php echo CHtml::checkBox('check-all-color', 0, array('class' => 'check-all', 'data-param' => 'color')); ?>
@@ -82,7 +82,7 @@ Yii::app()->clientScript->registerScript('show-hide',"
 				</span>
 			</div>
 			<div class="group-block" data-form-group="2" style="display:<?php echo ($params['category'] == 2 ? 'block' : 'none');?>">
-				<?php echo CHtml::label('Размер', 'params_size'); ?>:<br/>
+				<?php echo CHtml::label('Размер', ''); ?>:<br/>
 				<?php echo CHtml::checkBoxList('params[size][]', $params['size'], $sizeList, array('separator' => '', 'template' => '<span class="did">{input} {label}</span>')); ?>
 				<span class="did">
 					<?php echo CHtml::checkBox('check-all-size', 0, array('class' => 'check-all', 'data-param' => 'size')); ?>
@@ -92,7 +92,7 @@ Yii::app()->clientScript->registerScript('show-hide',"
 		</div>
 		<div class="column">
 			<div class="group-block" data-form-group="1 2" style="display:<?php echo ($params['category'] == 1 ? 'block' : 'none');?>">
-				<?php echo CHtml::label('Стерилизация и прививки', 'params_medical'); ?>:<br/>
+				<?php echo CHtml::label('Стерилизация и прививки', ''); ?>:<br/>
 				<?php echo CHtml::checkBoxList('params[medical][]', $params['medical'], array(1 => 'Привит', 2 => 'Стерилизован', 3 => 'Привит и стерилизован'), array('separator' => '', 'template' => '<span class="did">{input} {label}</span>')); ?>
 			</div>
 		</div>
