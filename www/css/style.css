@@ -212,6 +212,11 @@ footer .dev img { max-width: 161px; width: 100%; vertical-align: middle; }
 .s-form .row label.error { color: #c90000; }
 .s-form .row input.error, .s-form .row select.error { background: #fac2ac; color: #c90000; }
 
+.s-form .row input[type=file] { display: none; }
+.s-form .row .file-container { position: relative; color: #000000; }
+.s-form .row .file-name { border: 1px solid #e87948; background: #f9eee9; width: 94%; height: 29px; box-shadow: 0 1px 3px rgba(0, 0, 0, .31); border-radius: 0.8em; padding: 0 3%; outline: none; font-family: 'AFuturaRoundDemi'; font-size: 0.9375em; line-height: 29px; }
+.s-form .row .file-btn { position: absolute; right: 10px; top: 3px; line-height: 19px; background-color: #a2a3a3; padding: 3px 10px; border-radius: 8px; cursor: pointer; }
+
 .s-form .row .column .column-left input, .s-form .row .column .column-right input { padding: 0 6%; width: 12%; position: absolute; left: 16%; }
 .s-form .row .column .column-left select, .s-form .row .column .column-right select { padding: 0 6%; width: 55%; position: absolute; right: 0; }
 .s-form .row .column .column-left .text, .s-form .row .column .column-right .text { width: 13%; position: absolute; left: 0; line-height: 31px;text-align: right; padding-right: 3%; }

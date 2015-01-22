@@ -20,6 +20,7 @@ class ResponseForm extends CFormModel
 	public $id_category;
 	public $color;
 	public $size;
+	public $photo;
 	
 	/**
 	 * Declares the validation rules.
@@ -31,6 +32,7 @@ class ResponseForm extends CFormModel
 			array('sex, medical, terms1, terms2, id_category', 'numerical', 'integerOnly' => true),
 			array('age_y, age_m, age_w', 'numerical', 'integerOnly' => true, 'message' => 'Годы, месяцы, недели возраста должны быть числом.'),
 			array('city, color, size', 'length', 'max' => 256),
+			array('photo', 'file', 'types' => 'gif, jpg, jpeg, png', 'allowEmpty' => true,),
 			array('title, sex, medical, terms1, terms2, id_category, age_y, age_m, age_w, description', 'safe'),
 		);
 	}
@@ -56,6 +58,7 @@ class ResponseForm extends CFormModel
             'id_category' => 'Вид животного',
             'color' => 'Цвет(Окрас)',
             'size' => 'Размер',
+            'photo' => 'Фотография',
 		);
 	}
 	
@@ -82,6 +85,7 @@ class ResponseForm extends CFormModel
 		if ($this->id_category == 2)
 			$attributes['size'] = $this->size;
 		$attributes['hide'] = 1;
+		$attributes['photo'] = $this->photo;
 			
 		return $attributes;
 	}
