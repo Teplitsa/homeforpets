@@ -39,7 +39,7 @@ Yii::app()->clientScript->registerScript('group',"
 	<div class="row">
 		<div class="column">
 			<?php echo $form->labelEx($model, 'id_category'); ?>:
-			<?php echo $form->dropDownList($model, 'id_category', CHtml::listData(CatalogCategory::model()->findAll('parent_id = 0'), 'id', 'title'), array('empty' => '', 'class' => 'form-group')); ?>
+			<?php echo $form->dropDownList($model, 'id_category', CHtml::listData(CatalogCategory::model()->findAll('parent_id = 0'), 'id', 'title'), array('empty' => 'Выберите вид животного', 'class' => 'form-group')); ?>
 		</div>
 		<div class="column">
 			<?php echo $form->label($model, 'title'); ?>:
@@ -58,23 +58,23 @@ Yii::app()->clientScript->registerScript('group',"
 		</div> 
 		<div class="column">
 			<?php echo $form->label($model, 'sex'); ?>:
-			<?php echo $form->dropDownList($model, 'sex', array(2 => 'Самец', 1 => 'Самка'), array('empty' => '')); ?>
+			<?php echo $form->dropDownList($model, 'sex', array(2 => 'Самец', 1 => 'Самка'), array('empty' => 'Не указывать')); ?>
 		</div> 
 	</div> 
 
 	<div class="row">
 		<div class="column">
 			<?php echo $form->labelEx($model ,'city'); ?>:
-			<?php echo $form->dropDownList($model, 'city', array('Пенза' => 'Пенза', 'Заречный' => 'Заречный'), array('empty' => '')); ?>
+			<?php echo $form->dropDownList($model, 'city', array('Пенза' => 'Пенза', 'Заречный' => 'Заречный'), array('empty' => 'Выберите город')); ?>
 		</div>
 		<div class="column">
 			<div class="group-block" data-form-group="1" style="display:<?php echo ($model->id_category == 1 ? 'block' : 'none');?>">
 				<?php echo $form->labelEx($model ,'terms1'); ?>:
-				<?php echo $form->dropDownList($model, 'terms1', array(1 => 'с самовыгулом', 2 => 'без самовыгула'), array('empty' => '')); ?>
+				<?php echo $form->dropDownList($model, 'terms1', array(1 => 'с самовыгулом', 2 => 'без самовыгула'), array('empty' => 'Не указывать')); ?>
 			</div>
 			<div class="group-block" data-form-group="2" style="display:<?php echo ($model->id_category == 2 ? 'block' : 'none');?>">
 				<?php echo $form->labelEx($model ,'terms2'); ?>:
-				<?php echo $form->dropDownList($model, 'terms2', array(3 => 'будка', 4 => 'дом'), array('empty' => '')); ?>
+				<?php echo $form->dropDownList($model, 'terms2', array(3 => 'будка', 4 => 'дом'), array('empty' => 'Не указывать')); ?>
 			</div>
 		</div>
 	</div>
@@ -82,7 +82,7 @@ Yii::app()->clientScript->registerScript('group',"
 	<div class="row">
 		<div class="column">
 			<?php echo $form->label($model,'medical'); ?>:
-			<?php echo $form->dropDownList($model, 'medical', array(1 => 'Привит', 2 => 'Стерилизован', 3 => 'Привит и стерилизован'), array('empty' => '')); ?>
+			<?php echo $form->dropDownList($model, 'medical', array(1 => 'Привит', 2 => 'Стерилизован', 3 => 'Привит и стерилизован'), array('empty' => 'Не указывать')); ?>
 		</div>
 		<div class="column">
 			<div class="group-block" data-form-group="1" style="display:<?php echo ($model->id_category == 1 ? 'block' : 'none');?>">
