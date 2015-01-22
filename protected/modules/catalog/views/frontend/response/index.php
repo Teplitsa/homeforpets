@@ -9,6 +9,17 @@ Yii::app()->clientScript->registerScript('group',"
 		$('div.group-block[data-form-group != '+group+']').hide();
 		$('div.group-block[data-form-group = '+group+']').show();
 	});
+	
+	$(document).on('click', '.file-container .file-btn', function(){
+		$('#ResponseForm_photo').click();
+	}).on('change', '#ResponseForm_photo', function() {
+		var inputFiles = document.getElementById($(this).prop('id'));
+		var txt = 'Файл не выбран';
+		if (inputFiles.files.length == 1)
+			txt = inputFiles.files[0].name;
+		
+		$('.file-container .file-name').html(txt);
+	});
  
 ", CClientScript::POS_READY);
 ?>
@@ -97,9 +108,17 @@ Yii::app()->clientScript->registerScript('group',"
 		</div>
 	</div>
 	
-	<div class="row wp">
-		<?php echo $form->label($model, 'photo'); ?>:
-		<?php echo $form->fileField($model, 'photo'); ?>
+	<div class="row">
+		<div class="column">
+			<?php echo $form->label($model, 'photo'); ?>:
+			<div class="file-container">
+				<div class="file-name">Файл не выбран</div>
+				<div class="file-btn">Выберите файл</div>
+			</div>
+			<?php echo $form->fileField($model, 'photo'); ?>
+		</div>
+		<div class="column">
+		</div>
 	</div>
 	
 	<div class="row wp">
