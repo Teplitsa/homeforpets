@@ -162,7 +162,7 @@ footer .dev img { max-width: 161px; width: 100%; vertical-align: middle; }
 .catalog-category .product-view .left .previews a img { width: 100%; }
 
 .catalog-category .product-view .right { font-family: 'AFuturaRoundDemi'; font-size: 1.0625em; color: #1f1f1f; }
-.catalog-category .product-view .right div { font-size: 1.5em; padding-top: 7px; padding-bottom: 7px; }
+.catalog-category .product-view .right div { font-size: 1.4em; padding-top: 7px; padding-bottom: 7px; }
 .catalog-category .product-view .right .title { padding-left: 35px; background: url('/images/ic-name.png') no-repeat 7px center; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
 .catalog-category .product-view .right .age { padding-left: 35px; background: url('/images/ic-age.png') no-repeat 7px center; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
 .catalog-category .product-view .right .sex { padding-left: 35px; background: url('/images/ic-sex.png') no-repeat 7px center; }
