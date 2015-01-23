@@ -75,13 +75,13 @@ class ImageController extends BackEndController
 	 */
 	public function actionDelete($id)
 	{
-		if(Yii::app()->request->requestType=='POST')
+		if(Yii::app()->request->isPostRequest)
 		{
             $model=$this->loadModel($id);
 			$folder = 'upload/catalog/product/moreimages';
-            unlink ($folder . '/' . $model->image);
-            unlink ($folder . '/small/' . $model->image);
-            unlink ($folder . '/medium/' . $model->image);
+            @unlink ($folder . '/' . $model->image);
+            @unlink ($folder . '/small/' . $model->image);
+            @unlink ($folder . '/medium/' . $model->image);
 			// we only allow deletion via POST request
 			$model->delete();
 
