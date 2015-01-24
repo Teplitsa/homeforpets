@@ -5,6 +5,8 @@ class SSortableBehavior extends CActiveRecordBehavior {
 	public $sortField = 'sort_order';
 	public $categoryField;
 	public $titleField = 'title';
+	public $condition = null;
+	public $inverse = false;
 
 	public function beforeSave($event) {
 		
@@ -42,16 +44,16 @@ class SSortableBehavior extends CActiveRecordBehavior {
 				throw new CHttpException(400,$owner->{$this->titleField} . ' Уже первый');
 			
 			$criteria=new CDbCriteria;
-			$criteria->condition="{$this->sortField}<{$owner->{$this->sortField}}";
-			$criteria->order = "{$this->sortField} desc";
+			$criteria->condition="{$this->sortField}" . ($this->inverse ? '>' : '<') . "{$owner->{$this->sortField}}";
+			$criteria->order = "{$this->sortField} " . ($this->inverse ? 'asc' : 'desc');
 		}
 		elseif($direction=='down'){
 			if($owner->_is_last()) 
 				throw new CHttpException(400,$owner->{$this->titleField} . 'Уже последний');
 			
 			$criteria=new CDbCriteria;
-			$criteria->condition="{$this->sortField}>{$owner->{$this->sortField}}";
-			$criteria->order = "{$this->sortField} asc";
+			$criteria->condition="{$this->sortField}" . ($this->inverse ? '<' : '>') . "{$owner->{$this->sortField}}";
+			$criteria->order = "{$this->sortField} " . ($this->inverse ? 'desc' : 'asc');
 		}
 		else
 			throw new CHttpException(400, 'Invalid request');
@@ -61,6 +63,9 @@ class SSortableBehavior extends CActiveRecordBehavior {
 			$alias=$db->quoteColumnName($owner->getTableAlias());
 			$criteria->addCondition($alias.'.'.$db->quoteColumnName($this->categoryField).'='.$owner->{$this->categoryField});
 		}
+		if ($this->condition)
+			$criteria->addCondition($this->condition);
+			
 		$closest = $owner->find($criteria);
 		$this->_swap($closest,$owner);
 	}
@@ -91,13 +96,16 @@ class SSortableBehavior extends CActiveRecordBehavior {
 		$db = $owner->getDbConnection();
 		
 		$criteria=new CDbCriteria;
-		$criteria->order = "{$this->sortField} asc";
+		$criteria->order = "{$this->sortField} " . ($this->inverse ? 'desc' : 'asc');
 		$criteria->limit = 1;
 		
 		$alias=$db->quoteColumnName($owner->getTableAlias());
 		
 		if($this->categoryField)
 			$criteria->addCondition($alias.'.'.$db->quoteColumnName($this->categoryField).'='.$owner->{$this->categoryField});
+			
+		if ($this->condition)
+			$criteria->addCondition($this->condition);
 		
 		return $owner->find($criteria);
     }
@@ -108,13 +116,16 @@ class SSortableBehavior extends CActiveRecordBehavior {
 		$db = $owner->getDbConnection();
 		
 		$criteria=new CDbCriteria;
-		$criteria->order = "{$this->sortField} desc";
+		$criteria->order = "{$this->sortField} " . ($this->inverse ? 'asc' : 'desc');
 		$criteria->limit = 1;
 		
 		$alias=$db->quoteColumnName($owner->getTableAlias());
 		
 		if($this->categoryField)
 			$criteria->addCondition($alias.'.'.$db->quoteColumnName($this->categoryField).'='.$owner->{$this->categoryField});
+			
+		if ($this->condition)
+			$criteria->addCondition($this->condition);
 		
 		return $owner->find($criteria);
     }
