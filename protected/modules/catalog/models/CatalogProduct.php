@@ -60,6 +60,8 @@ class CatalogProduct extends CActiveRecord
 				'class' => 'ext.SSortable.SSortableBehavior',
                 'categoryField' => 'id_category',
                 'titleField' => 'title',
+                'condition' => 'attach = 0',
+                'inverse' => true,
 			),
 		);
 

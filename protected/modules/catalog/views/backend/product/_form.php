@@ -35,23 +35,24 @@ $cs->registerScript('translit', "
 ", CClientScript::POS_READY);
 
 $cs->registerScript('photo_delete', "
-        $('#photo-list a.delete').on('click',function() {
-            if(!confirm('Вы уверены в удалении фотографии?')) return false;
-            var th=this;
-            var afterDelete=function(){};
-            $.fn.yiiListView.update('photo-list', {
-                type:'POST',
-                url:$(this).attr('href'),
-                success:function(data) {
-                    $.fn.yiiListView.update('photo-list');
-                    afterDelete(th,true,data);
-                },
-                error:function(XHR) {
-                    return afterDelete(th,false,XHR);
-                }
-            });
-            return false;
+    
+	$(document).on('click', '#photo-list a.delete', function() {
+        if(!confirm('Вы уверены в удалении фотографии?')) return false;
+        var th=this;
+        var afterDelete=function(){};
+        $.fn.yiiListView.update('photo-list', {
+            type:'POST',
+            url:$(this).attr('href'),
+            success:function(data) {
+                $.fn.yiiListView.update('photo-list');
+                afterDelete(th,true,data);
+            },
+            error:function(XHR) {
+                return afterDelete(th,false,XHR);
+            }
         });
+        return false;
+    });
 
 ", CClientScript::POS_READY);
 
