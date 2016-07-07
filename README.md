@@ -8,13 +8,15 @@
 
 2) Из папки hfp_patch_26_01_2015 накатить патч и развернуть дамп базы
 
-3) Дать права на запись папкам /www/assets /www/upload /protected/runtime и всем их подпапкам
+3) Cоздать папки /www/assets /protected/runtime
 
-4) Скачать Yii-framework версии 1.1.16 и указать к нему путь в файлах /www/index.php и /protected/yiic.php
+4) Дать права на запись папкам /www/assets /www/upload /protected/runtime и всем их подпапкам
 
-5) Прописать доступы к базе в файле /protected/local.php
+5) Скачать Yii-framework версии 1.1.16 и указать к нему путь в файлах /www/index.php и /protected/yiic.php
 
-6) Ссылка на админку /manage Логин: admin Пароль: demo
+6) Прописать доступы к базе в файле /protected/config/local.php
+
+7) Ссылка на админку /manage Логин: admin Пароль: demo
 
 
 
